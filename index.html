@@ -118,8 +118,37 @@ header .status{
   #outPane pre{max-height:280px;font-size:15px}
   .hop small{font-size:12px}
   .stat{flex:1;min-width:120px}
-  table{font-size:13px}
-  td .pv{max-width:52vw}
+  /* Keep the "Past runs" section inside narrow mobile viewports. */
+.history{overflow:hidden}
+.history table{
+  display:block;
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  font-size:12px;
+}
+.history table th,
+.history table td{
+  white-space:nowrap;
+  padding:10px 9px;
+}
+.history table th:nth-child(1),
+.history table td:nth-child(1){min-width:58px}
+.history table th:nth-child(2),
+.history table td:nth-child(2){min-width:150px}
+.history table th:nth-child(3),
+.history table td:nth-child(3){min-width:110px}
+.history table th:nth-child(4),
+.history table td:nth-child(4){min-width:62px}
+.history table th:nth-child(5),
+.history table td:nth-child(5){min-width:126px}
+.history .sub{font-size:13px}
+.history .rowbtns{flex-wrap:nowrap}
+.history .rowbtns .ghost{
+  padding:7px 10px;
+  font-size:12px;
+}
+td .pv{max-width:150px}
   footer{font-size:12px}
   .set-wrap{padding:24px 14px 44px}
   fieldset{padding:16px 14px 18px}
