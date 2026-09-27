@@ -6,7 +6,7 @@
  */
 
 const FREE_ENDPOINT = "https://llama.pushkarsingh4343.workers.dev/v1/chat/completions";
-const FREE_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const FREE_MODEL = "@cf/qwen/qwen3.8-27b";
 const TRANSIENT = new Set([429, 502, 503, 504]);
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
