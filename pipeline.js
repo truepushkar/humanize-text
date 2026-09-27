@@ -51,16 +51,27 @@ export function stripThink(text) {
 export async function llmRewrite(text, targetLanguage, cfg, { history = null, lengthHint = "" } = {}) {
   const base = cfg.base_url.replace(/\/+$/, "");
   const url = base.endsWith("/chat/completions") ? base : base + "/chat/completions";
-  const task = `翻译为${targetLanguage}，去掉 AI 味道，拟人化改写，只输出结果：`;
+  const task = `Translate the text below into ${targetLanguage} and completely rewrite it as a real human being would write it. You are not translating a document — you are a person sitting down and writing this from scratch in your own voice, in ${targetLanguage}, after reading the original.
 
-  const messages = [{ role: "system", content: "你是一个专业的文案改写专家,精通多语言本地化。" }];
+How a real person writes (follow ALL of these):
+- Keep every piece of information. Nothing from the original may be dropped. If the original has five points, your rewrite must land all five.
+- Write it the way you'd actually say it to someone. Simple direct words beat fancy ones. Short punchy sentences next to longer wandering ones. Sentence lengths must vary — never uniform.
+- Vary how sentences connect. Not every sentence gets a connector, not every paragraph starts with one. Real people sometimes just put two ideas next to each other.
+- Use plain, natural ${targetLanguage} phrasing and idioms a native speaker would reach for. Avoid formulas like "in today's world", "plays a crucial role", "it is important to note", "furthermore", "moreover", "in conclusion", "delve", "landscape", "foster", "leverage", "seamless", "robust" — and their equivalents in ${targetLanguage}. Never open with "I" plus a disclaimer, never end with a tidy lesson.
+- Sound like a specific person with an opinion, not a balanced report. Where the original takes a stance, lean into it casually. Small human touches are fine: a parenthesis, a dash, a rhetorical question, "honestly", "still", "that said" — used once or twice, not sprinkled.
+- Break the symmetry. Do not give every point the same weight or the same sentence pattern. If two ideas are trivial, handle them in half a sentence each and spend the extra words on the one that matters.
+- No lists, no headings, no markdown, no quotes around the whole thing. Output flowing prose paragraphs only, matching the original's structure loosely.
+- Keep roughly the original length — within about 15% either way.
+- Output ONLY the rewritten text in ${targetLanguage}. No preamble, no explanation, no alternatives, nothing else.`;
+
+  const messages = [{ role: "system", content: "You are a seasoned writer and localization editor. You rewrite text so it reads like a specific real person wrote it — natural, direct, with a voice. You follow the user's instructions exactly and output only the rewritten text." }];
   if (history) {
-    messages.push({ role: "user", content: `翻译为${targetLanguage}，去掉 AI 味道，拟人化改写，只输出结果：\n${history.input}` });
+    messages.push({ role: "user", content: task + "\n\n" + history.input });
     messages.push({ role: "assistant", content: history.output });
   }
   const userContent = lengthHint
-    ? `${task}\n重要：${lengthHint}\n${text}`
-    : `${task}\n${text}`;
+    ? `${task}\n\nIMPORTANT: ${lengthHint}\n\n${text}`
+    : `${task}\n\n${text}`;
   messages.push({ role: "user", content: userContent });
 
   const r = await fetchRetry(url, {
@@ -83,7 +94,7 @@ export async function llmRewriteClamped(text, targetLanguage, cfg, opts = {}) {
   let tries = 0;
   while (result.length > MAX_STEP_CHARS && tries < MAX_REWRITE_TRIES) {
     tries++;
-    const hint = `上一篇输出超过了${MAX_STEP_CHARS}字符上限。必须输出少于${MAX_STEP_CHARS}个字符（最多约${MAX_STEP_CHARS - 1500}）。内容可以压缩，但不得截断语句。——必须输出少于${MAX_STEP_CHARS}个字符。`;
+    const hint = `The previous output exceeded ${MAX_STEP_CHARS} characters. You MUST output fewer than ${MAX_STEP_CHARS} characters (aim for about ${MAX_STEP_CHARS - 1500}). You may compress, but do not cut information or truncate sentences mid-way. Output fewer than ${MAX_STEP_CHARS} characters.`;
     console.warn(`[pipeline] output ${result.length} > ${MAX_STEP_CHARS}, retrying with length cap (${tries}/${MAX_REWRITE_TRIES})`);
     result = await llmRewrite(text, targetLanguage, cfg, { ...opts, lengthHint: hint });
   }
