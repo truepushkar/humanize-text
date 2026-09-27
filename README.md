@@ -55,12 +55,33 @@ completeness (all facts preserved), language fluency, style adaptability,
 readability, and creativity/impact — the human-style prompt improved or held on
 every sample; the gains are largest exactly where the input is most robotic.
 
+A second round added the structural-tell checklist from
+[blader/humanizer](https://github.com/blader/humanizer) (Wikipedia's "Signs of
+AI writing": not-X-but-Y contrasts, one-line closers, forced triads, staged
+run-ups, dash-as-connector, inflated significance) on top of the vocabulary
+bans — see `examples/zerogpt-scores-v2.json`. On the noisy ZeroGPT instrument
+the v2 prompt held 0% / 0% / 56.2% (vs 0% / 0% / 56.1% for v1, one sample swung
+to 58.3% within that tool's run-to-run variance). The structural rules are kept
+for output quality — no rewritten sample ever scored 100% AI across twelve
+detector runs, while both robotic inputs scored 100%.
+
 > **Caveat, stated plainly.** AI detectors are probabilistic and biased (non-
 > English text confuses them — ZeroGPT in our tests returned meaningless "0%"
 > labels on the Chinese intermediate stage). A low score on one checker is
 > evidence, not proof, and this tool exists for style transformation, not for
 > deceiving people about authorship. Follow your institution's AI-use and
 > disclosure policies.
+
+<details>
+<summary>Pangram (second detector)</summary>
+
+We also ran the same samples through Pangram's web checker, which third-party
+research ranks among the most accurate detectors. Its free tier requires an
+account before showing any score, so a full Pangram table is TODO; if you have
+an account or API key, `examples/raw-chain-outputs-v2.json` contains every
+intermediate ready to paste.
+
+</details>
 
 ## How it works (implementation)
 

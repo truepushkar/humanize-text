@@ -1,0 +1,68 @@
+[
+  {
+    "index": 1,
+    "input": "Remote work has fundamentally transformed the modern workplace landscape. Furthermore, it is important to note that organizations across various industries are increasingly leveraging flexible arrangements in order to foster enhanced productivity. In today's fast-paced world, the ability to collaborate seamlessly across time zones plays a crucial role in driving innovation. Moreover, companies that embrace robust remote-first strategies are able to delve into global talent pools, unlocking significant competitive advantages.",
+    "v1": {
+      "s1": "远程工作已经彻底改变了我们上班的方式。现在各行各业的公司都在尝试弹性安排，想借此提升效率。跨时区一起合作——说实话，这对创新挺有帮助的。那些把远程放在第一位的企业，能把目光投向全球人才库，抢到不少竞争优势。",
+      "s2": "リモート勤務が私たちの働き方を根本から変えたのは事実だ。今や業界を問わず、柔軟なスケジュールを取り入れようとする企業が増えている。時差を超えて協力できる環境は、正直言ってイノベーションを促す効果が大きい。リモートを最優先に考える会社は、世界中の人材に目を向けられるから、競争力を大きく手に入れられるんだ。",
+      "s3": "On totta, että etätyö on muuttanut perinpohjaisesti tapaamme työskennellä. Yhä useammat yritykset eri toimialoilla ottavat nyt käyttöön joustavia aikatauluja. Rehellisesti sanottuna ympäristöllä, jossa ihmiset voivat tehdä yhteistyötä aikaerojen yli, on suuri vaikutus innovaatioiden edistämiseen. Etätyötä etusijalle asettavat yritykset voivat saada valtavan kilpailuedun keskittymällä kykyihin ympäri maailmaa.",
+      "s4": {
+        "text": "It is true that teleworking has radically changed our way of working. More and more companies in different sectors are now introducing flexible timetables. To be honest, an environment in which people can cooperate over time differences has a major impact on the promotion of innovation. Companies that give priority to telework can gain a huge competitive advantage by focusing on talent around the world.",
+        "engine": "LibreTranslate"
+      }
+    },
+    "v2": {
+      "s1": "远程工作已经彻底改写了现代职场的模样。各行各业的公司正越来越多地采用灵活安排，想让效率更高。跨时区协作成了推动创新的关键因素。那些把远程放在首位的企业能够直接触及全球人才库，从而在竞争中占到先手。",
+      "s2": "リモートワークが今の職場を一変させたんだ。業界を問わず、柔軟な働き方を取り入れる企業が増えていて、みんな生産性を上げようとしている。時差を越えてでもスムーズにやり取りできることがイノベーションのカギになるし、実感している人が多い。リモートを第一に考える会社は、世界中の才能に直接手が届くから、競争で一歩リードできるんだよね。",
+      "s3": "Etätyö on muuttanut nykyisen työpaikan täysin. Toimialasta riippumatta yhä useammat yritykset omaksuvat joustavia työtapoja, ja kaikki yrittävät lisätä tuottavuutta. Sujuva kommunikointi jopa aikaerojen yli on avain innovaatioon, ja monet ihmiset ymmärtävät tämän. Etätekniikan etusijalle asettavilla yrityksillä on suora pääsy kykyihin eri puolilta maailmaa, mikä antaa niille mahdollisuuden kilpailla.",
+      "s4": {
+        "text": "Remote work has completely changed the current job. Regardless of industry, more and more companies are adopting flexible working methods, and everyone is trying to increase productivity. Smooth communication even over time differences is the key to innovation, and many people understand this. Companies that give priority to remote technologies have direct access to talent from all over the world, allowing them to compete.",
+        "engine": "LibreTranslate"
+      }
+    }
+  },
+  {
+    "index": 2,
+    "input": "Urban gardens are popping up on rooftops all over the city, and honestly, they are doing more for the neighborhood than most city council initiatives. A friend of mine turned the gravel roof of her apartment block into a tomato and basil patch three years ago. Now the whole building shares the harvest, the kids up there learned where food actually comes from, and the top-floor apartments stay measurably cooler in summer. It cost the residents almost nothing. The city just needed to stay out of the way.",
+    "v1": {
+      "s1": "城市的屋顶上开始出现许多小菜园，老实说，它们带来的改变比不少市政项目都更实在。三年前，我一个朋友把自家公寓楼的碎石屋顶改成了番茄和罗勒的种植区。现在整栋楼的住户都能一起吃到自家采的蔬菜，楼上的孩子也懂得了食物到底是怎么来的——而且顶层的房间夏天明显凉快了不少。费用几乎为零，居民只动了点手脚，市里只要别管太多就好。",
+      "s2": "最近、街の屋上で小さな菜園が増えているんだ。実は、これが市のいろんな大きなプロジェクトより実感があるんだよね。三年前、友達が自分のマンションのコンクリート屋根をトマトとバジルの畑にしたんだ。今では、同じ棟に住むみんなが自分で育てた野菜を食べられるし、上の階の子どもたちも食べ物がどうやってできたかを知っている。しかも、最上階の部屋は夏になると結構涼しくなるんだ。費用はほぼゼロ、住民がちょっと手を加えたくらいで、市はあんまり干渉しなくていいんじゃないか。",
+      "s3": "Viime aikoina pienet vihannespuutarhat ovat lisääntyneet kaupungin katoilla. Itse asiassa tämä on mielestäni konkreettisempi kuin kaupungin erilaiset suuret hankkeet. Kolme vuotta sitten eräs ystäväni muutti asuntonsa betonikaton tomaatti-basilikapuutarhaksi. Nyt kaikki samassa talossa asuvat voivat syödä itse kasvattamiaan vihanneksia, ja jopa yläkerran lapset tietävät, miten heidän ruokansa valmistetaan. Lisäksi ylimmän kerroksen huoneet viilenevät kesällä. Kustannukset ovat lähes nolla, eikä kaupungin tarvitse liikaa puuttua asiaan, vain vähän asukkaiden työtä.",
+      "s4": {
+        "text": "Recently, small vegetable gardens have increased on city roofs. In fact, I think this is more concrete than the different major projects in the city. Three years ago, a friend of mine turned his apartment into a concrete roof tomato basil garden. Now everyone living in the same house can eat the vegetables they grow themselves, and even the children upstairs know how to cook their food. In addition, the rooms on the top floor will cool down in the summer. The cost is almost zero, and the city does not have to intervene too much, with little of the work of the residents.",
+        "engine": "LibreTranslate"
+      }
+    },
+    "v2": {
+      "s1": "城市里屋顶花园层出不穷，老实说，它们带给社区的好处甚至超过大多数市政项目。三年前，我一个朋友把自家公寓楼的碎石屋顶改成了番茄和罗勒的小菜园。现在整栋楼都在共享收成，孩子们也知道食物到底是从哪儿来的，顶层住户的夏天也真的凉快了不少。居民几乎没有花钱，市里只要别管太多就行。",
+      "s2": "この街では屋上に庭を作るところが次々に増えている。正直に言うと、そんな小さな取り組みが街の行政プロジェクトよりも住民に与えるプラスは大きいんだ。三年前、友達が自分のアパートの砂利の屋根をトマトとバジルの菜園に変えたんだけど、今ではビル全体で収穫を分け合っている。子どもたちも食べ物がどこから来るのかを体験で学んだし、最上階の部屋は夏になると結構涼しくなったんだよ。住人はほとんど費用がかからず、行政が干渉しなければ済むだけの話だ。",
+      "s3": "Tässä kaupungissa yhä useammat paikat luovat kattopuutarhoja. Rehellisesti sanottuna tämänkaltaisilla pienillä aloitteilla on suurempi positiivinen vaikutus asukkaisiin kuin kaupunginhallinnon hankkeilla. Kolme vuotta sitten eräs ystäväni muutti asuntonsa sorakaton tomaatti-basilikapuutarhaksi, ja nyt koko rakennus jakaa sadon. Lapset oppivat myös kokemuksen kautta, mistä ruoka tulee, ja ylimmän kerroksen huoneet olivat kesällä melko viileitä. Se ei maksa asukkaille juuri mitään ja vaatii vain vähän valtion väliintuloa.",
+      "s4": {
+        "text": "In this city, more and more places create roof gardens. To be honest, small initiatives of this kind have a greater positive impact on the population than on the municipal administration's projects. Three years ago, a friend of mine turned his apartment into a gravel roof tomato basil garden, and now the whole building shares the crop. Children also learned through experience where food comes from, and the rooms on the top floor were quite cool in the summer. It costs the residents little and requires little state intervention.",
+        "engine": "LibreTranslate"
+      }
+    }
+  },
+  {
+    "index": 3,
+    "input": "To prepare the perfect cup of Indian masala chai, begin by gathering the following ingredients: two cups of whole milk, one cup of water, two teaspoons of loose black tea leaves, one inch of fresh ginger (grated), two green cardamom pods (crushed), one small cinnamon stick, and sugar to taste. First, combine the water and spices in a saucepan and bring the mixture to a rolling boil. Subsequently, add the tea leaves and allow them to steep for approximately two minutes. Next, introduce the milk and sugar, and simmer the concoction for an additional three to four minutes. Finally, strain the beverage into cups and serve hot. This meticulous process ensures a robust and aromatic result.",
+    "v1": {
+      "s1": "想泡一杯正宗的印度马萨拉茶，得先把东西备齐：两杯全脂牛奶、一杯水、两小勺散装红茶叶、一寸左右的鲜姜擦成泥，两个捣碎的绿豆蔻荚，一根小肉桂棒，糖随个人口味加。先把水和所有香料一起倒进锅里，等它翻滚沸腾时闻到那股味儿，你就知道差不多了。接下来撒进茶叶，盖上盖子闷个两分钟左右，让茶味渗进去。再把牛奶倒进去，撒点糖，转小火再炖三四分钟，别让它溢出来。最后把茶渣滤掉，倒进杯子，趁热喝，浓郁的茶香和辣味立刻在嘴里炸开，这样的茶才算是正宗。",
+      "s2": "本格的なインドのマサラティーを作りたいなら、まずは材料をそろえるんだ。全脂牛乳が2カップ、 水が1カップ、 散らした紅茶葉を小さじ2杯くらい、 みじん切りにした生姜を1インチほど、 カルダモンのさやを2個潰したやつ、 小さめのシナモンスティック1本、 砂糖は好きなだけでいい。鍋に水と全部のスパイスを入れて火にかけ、沸騰して香りが漂ってきたらだいたいOK。そこへ茶葉を入れ、蓋をして2分ほど蒸らす。続いて牛乳を注ぎ、砂糖を足して弱火で3、4分ほど煮る。あふれそうになるのは避けてね。最後に茶こしで渣（こし）を除いてカップに注ぎ、熱いうちに飲む。濃厚な茶の香りとピリッとしたスパイスが口の中で一気に広がる、これが正真正銘のマサラティーだ。正直、手間はかかるけど、やってみる価値はある。",
+      "s3": "Jos haluat valmistaa aitoa intialaista masalateetä, kerää ensin ainekset. 2 kupillista täysrasvaista maitoa, 1 kuppi vettä, noin 2 teelusikallista ripoteltuja mustan teen lehtiä, noin tuuma hienonnettua inkivääriä, 2 murskattua kardemummapalkoa, 1 pieni kanelitanko ja niin paljon sokeria kuin haluat. Laita vesi ja kaikki mausteet kattilaan ja kuumenna. Kun se kiehuu ja voit haistaa tuoksun, on hyvä mennä. Lisää joukkoon teelehdet, peitä ja anna hautua noin 2 minuuttia. Kaada seuraavaksi maito, lisää sokeri ja keitä miedolla lämmöllä noin 3-4 minuuttia. Vältä ylivuotoa. Poista lopuksi jäännökset teesiivilällä, kaada kuppiin ja juo vielä kuumana. Tämä on aito masala-tee, jossa on rikas teen aromi ja suussa leviävät kirpeät mausteet. Rehellisesti sanottuna se vaatii paljon vaivaa, mutta se on kokeilemisen arvoinen.",
+      "s4": {
+        "text": "If you want to make a genuine Indian masala tea, first gather the ingredients. 2 cups of full-fat milk, 1 cup of water, about 2 teaspoons of sprinkled black tea leaves, about an inch of chopped ginger, 2 crushed cardamom blocks, 1 small cinnamon bar and as much sugar as you want. Put the water and all the spices in the pot and heat up. When it boils, and you can smell it, it's good to go. Add tea leaves, cover and allow to boil for about 2 minutes. Next, pour the milk, add sugar and cook with low heat for about 3-4 minutes. Avoid overflow. Finally remove the remains with a teaspoon, pour into a cup and drink hot. This is a genuine masala tea with a rich aroma of tea and bitter spices spreading through the mouth. To be honest, it takes a lot of effort, but it's worth a try.",
+        "engine": "LibreTranslate"
+      }
+    },
+    "v2": {
+      "s1": "想泡一杯正宗的印度马萨拉茶，先把材料准备好：全脂牛奶两杯、一杯水、散装红茶叶两茶匙、一英寸左右的鲜姜（擦碎）、两颗碾碎的绿豆蔻、一个小肉桂棒，糖随口味加。先把水和所有香料倒进锅里，煮到滚沸。锅里的水冒泡后，放进茶叶，焖大约两分钟。接着倒进牛奶，加入糖，再小火熬三四分钟。最后把茶滤进杯子，趁热喝。这样一来，茶的味道既浓郁又带着层层香气。",
+      "s2": "本格的なインドのマサラチャイを作りたければ、まず材料を揃える。全脂牛乳を2カップ、水を1カップ、ばらした紅茶の葉を小さじ2、すりおろした生姜を1インチほど、潰した緑のカルダモンを2個、小さなシナモンスティックを1本、砂糖は好みで用意する。鍋に水とスパイスを入れ、沸騰させたら茶葉を加えて約2分間蒸らす。次に牛乳と砂糖を入れ、弱火でさらに3〜4分ほど煮る。最後に茶こしで濾してカップに注ぎ、熱いうちに飲めば、濃くて香り豊かなチャイが出来上がりだ。",
+      "s3": "Jos haluat tehdä aitoa intialaista masala chaita, ensimmäinen askel on kerätä ainekset. Valmista 2 kupillista täysrasvaista maitoa, 1 kuppi vettä, 2 teelusikallista irtonaisia ​​mustan teen lehtiä, 1 tuuma raastettua inkivääriä, 2 murskattua vihreää kardemummaa, 1 pieni kanelitanko ja sokeria maun mukaan. Lisää vesi ja mausteet kattilaan, kiehauta, lisää sitten teelehdet ja hauduta noin 2 minuuttia. Lisää seuraavaksi maito ja sokeri ja keitä miedolla lämmöllä vielä 3-4 minuuttia. Siivilöi se lopuksi teesiivilän läpi, kaada se kuppiin ja juo se vielä kuumana, jotta saat täyteläisen ja aromaattisen chain.",
+      "s4": {
+        "text": "If you want to make genuine Indian masala chaita, the first step is to collect the ingredients. Prepare 2 cups of full-fat milk, 1 cup of water, 2 teaspoons of loose black tea leaves, 1 inch grated ginger, 2 crushed green cardamom, 1 small cinnamon bar and sugar according to taste. Add the water and spices to the pot, boil, then add the tea leaves and boil for about 2 minutes. Add milk and sugar and cook with mild heat for another 3-4 minutes. Finally sieve it through the teaspoon, pour it into the cup and drink it hot, so you can have a full and aromatic chai.",
+        "engine": "LibreTranslate"
+      }
+    }
+  }
+]

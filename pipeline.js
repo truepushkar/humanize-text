@@ -54,14 +54,19 @@ export async function llmRewrite(text, targetLanguage, cfg, { history = null, le
   const task = `Translate the text below into ${targetLanguage} and completely rewrite it as a real human being would write it. You are not translating a document — you are a person sitting down and writing this from scratch in your own voice, in ${targetLanguage}, after reading the original.
 
 How a real person writes (follow ALL of these):
-- Keep every piece of information. Nothing from the original may be dropped. If the original has five points, your rewrite must land all five.
+- Keep every piece of information. Nothing from the original may be dropped. If the original has five points, your rewrite must land all five. Never invent a fact, number, name, date or quote that is not in the original.
 - Write it the way you'd actually say it to someone. Simple direct words beat fancy ones. Short punchy sentences next to longer wandering ones. Sentence lengths must vary — never uniform.
 - Vary how sentences connect. Not every sentence gets a connector, not every paragraph starts with one. Real people sometimes just put two ideas next to each other.
-- Use plain, natural ${targetLanguage} phrasing and idioms a native speaker would reach for. Avoid formulas like "in today's world", "plays a crucial role", "it is important to note", "furthermore", "moreover", "in conclusion", "delve", "landscape", "foster", "leverage", "seamless", "robust" — and their equivalents in ${targetLanguage}. Never open with "I" plus a disclaimer, never end with a tidy lesson.
-- Sound like a specific person with an opinion, not a balanced report. Where the original takes a stance, lean into it casually. Small human touches are fine: a parenthesis, a dash, a rhetorical question, "honestly", "still", "that said" — used once or twice, not sprinkled.
-- Break the symmetry. Do not give every point the same weight or the same sentence pattern. If two ideas are trivial, handle them in half a sentence each and spend the extra words on the one that matters.
-- No lists, no headings, no markdown, no quotes around the whole thing. Output flowing prose paragraphs only, matching the original's structure loosely.
-- Keep roughly the original length — within about 15% either way.
+- Use plain, natural ${targetLanguage} phrasing and idioms a native speaker would reach for. Avoid stock AI words like "delve", "landscape", "foster", "leverage", "seamless", "robust", "showcasing", "testament" and openers like "in today's world", "it is important to note", "in conclusion" — and their equivalents in ${targetLanguage}. Prefer "is/has" over inflated verbs like "serves as", "features", "boasts".
+- Sound like a specific person with an opinion, not a balanced report. Where the original takes a stance, lean into it casually. Small human touches are fine: a parenthesis, a rhetorical question, "honestly", "still", "that said" — used once or twice, not sprinkled.
+- Kill the strongest structural AI tells (from Wikipedia's "Signs of AI writing", maintained by WikiProject AI Cleanup):
+  * No "not X but Y" constructions — including "not just / not only / not merely X, but Y", "it's not X, it's Y", the reversed "X rather than Y", the split form ("This does not mean X. It means Y."), or a clipped negative tail (", no guessing").
+  * No one-line closers: a standalone sentence that just restates the paragraph before it, "That is the real win.", "Read that again.", "Let that sink in.", a stack of fragments ("No aesthetic prior. No nostalgia."), or words spaced with periods (every. single. day.).
+  * No forced triads — never group ideas into threes to sound complete. Merge, develop the strongest, or vary the structure; keep three only when the meaning genuinely needs three.
+  * No staged run-ups ("Let's dive in", "Here's what you need to know", "Now let's look at", "Without further ado", "Quick note") and no staged candor ("Honestly? It depends.") — remove the run-up, not just its tone.
+  * No "arguing with no one" ("This isn't mainly about", "I'm not saying", "To be clear", "Don't get me wrong", "A tempting approach would be", "You might think... but") — remove the defense; if it holds a real claim, state the claim.
+  * If the source uses a vague connection ("associated with", "connected to", "linked to"), either name the specific relationship the source gives or keep the vague wording — never invent a role.
+  * No decorative formatting (bold on every item, title-case headings, emoji headings, horizontal rules between sections).
 - Output ONLY the rewritten text in ${targetLanguage}. No preamble, no explanation, no alternatives, nothing else.`;
 
   const messages = [{ role: "system", content: "You are a seasoned writer and localization editor. You rewrite text so it reads like a specific real person wrote it — natural, direct, with a voice. You follow the user's instructions exactly and output only the rewritten text." }];
