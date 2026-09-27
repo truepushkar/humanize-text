@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehumanizer — turn machine text back into people words</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf7f2;
+  --card:#ffffff;
+  --ink:#1f1a14;
+  --ink-soft:#5c554b;
+  --line:#e4ddd2;
+  --line-strong:#c9bfae;
+  --accent:#2f5d50;        /* deep botanic green — the "human hand" color */
+  --accent-deep:#1e4238;
+  --accent-tint:#e8efeb;
+  --amber:#9a6b1f;
+  --amber-tint:#f6eedd;
+  --danger:#8c3226;
+  --danger-tint:#f7e7e4;
+  --radius:6px;
+  --radius-lg:12px;
+  --shadow:0 1px 2px rgba(31,26,20,.05), 0 8px 24px -18px rgba(31,26,20,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans",system-ui,sans-serif;
+  font-size:15.5px;
+  line-height:1.55;
+}
+/* paper grain via layered radial-gradients, no image needed */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    radial-gradient(rgba(31,26,20,.028) 1px, transparent 1px),
+    radial-gradient(rgba(31,26,20,.02) 1px, transparent 1px);
+  background-size:5px 5px, 9px 9px;
+  background-position:0 0, 3px 4px;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* ---------- masthead ---------- */
+header{border-bottom:1px solid var(--line-strong);background:rgba(250,247,242,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:50}
+.mast{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}
+.brand b{font-family:"Newsreader",serif;font-weight:600;font-size:24px;letter-spacing:-.01em}
+.brand span{font-family:"Newsreader",serif;font-style:italic;font-size:15px;color:var(--ink-soft)}
+nav{display:flex;gap:4px;align-items:center}
+nav a{
+  text-decoration:none;color:var(--ink-soft);padding:8px 14px;border-radius:999px;
+  font-weight:500;font-size:14.5px;transition:background .15s,color .15s;
+}
+nav a:hover{background:var(--accent-tint);color:var(--accent-deep)}
+nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+header .status{
+  font-size:12.5px;color:var(--ink-soft);display:flex;align-items:center;gap:7px;
+  padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.dot.ok{background:var(--accent)}
+@media (max-width:820px){.brand span,header .status{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:52px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:end}
+.hero h1{
+  font-family:"Newsreader",serif;font-weight:500;font-size:clamp(34px,5vw,52px);
+  line-height:1.06;margin:0 0 14px;letter-spacing:-.015em;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{margin:0;color:var(--ink-soft);font-size:16.5px;max-width:46ch}
+.chainbox{
+  border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  background:var(--card);box-shadow:var(--shadow);padding:20px 22px;
+}
+.chainbox h2{font-size:13px;font-weight:600;margin:0 0 14px;color:var(--ink-soft);letter-spacing:.02em}
+.flow{display:flex;flex-direction:column;gap:0}
+.hop{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:baseline;padding:9px 0;position:relative}
+.hop + .hop::before{content:"";position:absolute;left:14.5px;top:-9px;bottom:9px;width:1px;background:var(--line-strong)}
+.hop i{
+  font-style:normal;font-size:12px;font-weight:700;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+  background:var(--paper);border:1px solid var(--line-strong);color:var(--ink-soft);
+}
+.hop.done i{background:var(--accent);border-color:var(--accent);color:#fff}
+.hop.live i{background:var(--amber);border-color:var(--amber);color:#fff;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.14)}}
+.hop b{font-weight:600;font-size:14.5px}
+.hop small{display:block;color:var(--ink-soft);font-size:13px;margin-top:1px}
+@media (max-width:820px){.hero{grid-template-columns:1fr;padding-top:36px}}
+
+/* ---------- workbench ---------- */
+.bench{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  background:var(--card);box-shadow:var(--shadow);overflow:hidden;
+}
+.pane{padding:18px 20px 20px;min-width:0}
+.pane + .pane{border-left:1px solid var(--line-strong)}
+@media (max-width:820px){.bench{grid-template-columns:1fr}.pane + .pane{border-left:none;border-top:1px solid var(--line-strong)}}
+.pane-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.pane-head h2{font-size:13.5px;font-weight:600;color:var(--ink-soft);margin:0;letter-spacing:.02em}
+.count{font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+textarea{
+  width:100%;min-height:260px;resize:vertical;border:1px solid var(--line-strong);
+  border-radius:var(--radius);padding:14px;font:inherit;color:var(--ink);background:#fff;
+  line-height:1.6;outline:none;
+}
+textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
+textarea[disabled]{background:#f6f3ec;color:var(--ink-soft)}
+#outPane pre{
+  white-space:pre-wrap;word-wrap:break-word;font-family:"Newsreader",serif;
+  font-size:16px;line-height:1.7;margin:0;max-height:340px;overflow:auto;
+}
+#outPane .placeholder{color:var(--ink-soft);font-style:italic;font-size:14.5px;margin:6px 0 2px}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 6px}
+button{
+  font:inherit;font-weight:600;cursor:pointer;border-radius:999px;transition:all .15s;
+}
+.go{
+  background:var(--accent);border:1.5px solid var(--accent-deep);color:#fff;
+  padding:11px 26px;font-size:15px;letter-spacing:.01em;
+}
+.go:hover{background:var(--accent-deep)}
+.go[disabled]{background:var(--line);border-color:var(--line);color:var(--ink-soft);cursor:not-allowed}
+.ghost{
+  background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);
+  padding:9px 16px;font-size:13.5px;font-weight:500;
+}
+.ghost:hover{border-color:var(--ink);color:var(--ink)}
+.ghost[disabled]{opacity:.6;cursor:not-allowed;color:var(--ink-soft)}
+select{
+  font:inherit;padding:9px 12px;border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:#fff;color:var(--ink);outline:none;cursor:pointer;
+}
+select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
+label.inline{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-soft)}
+label.inline select{padding:7px 10px;font-size:13.5px}
+
+/* toolbar buttons row under output */
+.out-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+
+/* toast */
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(8px);
+  background:var(--ink);color:var(--paper);padding:11px 20px;border-radius:8px;
+  font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:all .25s;z-index:100;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.4);max-width:88vw;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.err{background:var(--danger)}
+
+/* error callout */
+.callout{
+  display:none;margin-top:14px;padding:12px 16px;border-radius:var(--radius);
+  background:var(--danger-tint);border:1px solid #dcb4ad;color:var(--danger);
+  font-size:14px;
+}
+.callout.show{display:block}
+
+/* step trace accordion */
+.trace{margin:26px 0 8px}
+.trace h3{font-family:"Newsreader",serif;font-weight:600;font-size:20px;margin:0 0 12px}
+details.step{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--card);
+  margin-bottom:8px;overflow:hidden;
+}
+details.step summary{
+  cursor:pointer;padding:11px 16px;font-size:14px;font-weight:600;list-style:none;
+  display:flex;align-items:center;gap:12px;user-select:none;
+}
+details.step summary::-webkit-details-marker{display:none}
+details.step summary .arrow{margin-left:auto;color:var(--ink-soft);transition:transform .2s;font-size:12px}
+details.step[open] summary .arrow{transform:rotate(90deg)}
+details.step .body{padding:2px 16px 16px;white-space:pre-wrap;font-size:14.5px;line-height:1.65;color:var(--ink-soft);max-height:300px;overflow:auto;border-top:1px dashed var(--line)}
+.badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;letter-spacing:.03em}
+.badge.llm{background:var(--accent-tint);color:var(--accent-deep)}
+.badge.mt{background:var(--amber-tint);color:var(--amber)}
+
+/* ---------- history ---------- */
+.history{margin-top:54px}
+.history h3{font-family:"Newsreader",serif;font-weight:600;font-size:22px;margin:0 0 4px}
+.history .sub{color:var(--ink-soft);font-size:14px;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line-strong);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+th{font-size:12px;text-align:left;color:var(--ink-soft);padding:11px 14px;border-bottom:1px solid var(--line-strong);font-weight:600;letter-spacing:.02em}
+td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td .pv{display:block;max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-soft)}
+td .rowbtns{display:flex;gap:6px;flex-wrap:wrap}
+.empty{padding:28px;text-align:center;color:var(--ink-soft);font-style:italic;font-family:"Newsreader",serif;font-size:16px}
+
+/* ---------- stats strip ---------- */
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin:34px 0 0}
+.stat{
+  border:1px solid var(--line-strong);background:var(--card);border-radius:var(--radius);
+  padding:12px 20px;min-width:150px;
+}
+.stat b{display:block;font-family:"Newsreader",serif;font-size:26px;font-weight:600;letter-spacing:-.01em}
+.stat span{font-size:12.5px;color:var(--ink-soft)}
+
+/* ---------- footer ---------- */
+footer{margin-top:64px;padding:22px 0 34px;border-top:1px solid var(--line-strong);color:var(--ink-soft);font-size:13px}
+footer p{margin:4px 0}
+footer a{color:var(--accent-deep)}
+
+/* ---------- settings page ---------- */
+.set-wrap{max-width:680px;margin:0 auto;padding:36px 20px 60px;position:relative;z-index:1}
+.set-wrap h1{font-family:"Newsreader",serif;font-weight:600;font-size:34px;margin:0 0 6px;letter-spacing:-.01em}
+.set-wrap .lede{color:var(--ink-soft);margin:0 0 26px}
+form.settings{display:flex;flex-direction:column;gap:20px}
+fieldset{
+  border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--card);
+  padding:20px 22px 22px;margin:0;box-shadow:var(--shadow);
+}
+legend{font-family:"Newsreader",serif;font-weight:600;font-size:18px;padding:0 8px}
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-weight:600;font-size:13.5px;margin-bottom:6px}
+.field .hint{font-weight:400;color:var(--ink-soft);font-size:12.5px;margin-top:5px}
+input[type=text],input[type=password],input[type=number]{
+  width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line-strong);
+  border-radius:var(--radius);background:#fff;color:var(--ink);outline:none;
+}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.testresult{font-size:13.5px;margin-left:10px}
+.testresult.ok{color:var(--accent-deep);font-weight:600}
+.testresult.bad{color:var(--danger)}
+.datalist-note{font-size:12.5px;color:var(--ink-soft)}
+
+/* focus visibility everywhere */
+a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- dark theme ---------- */
+:root{color-scheme:light dark}
+body[data-theme="dark"]{
+  --paper:#171512; --card:#201d19; --ink:#eae5dc; --ink-soft:#a89f92;
+  --line:#35302a; --line-strong:#4a4339;
+  --accent:#7fae9d; --accent-deep:#a9cfc0; --accent-tint:#28352f;
+  --amber:#c9a05a; --amber-tint:#393021;
+  --danger:#d47f70; --danger-tint:#3b2622;
+  --shadow:0 1px 2px rgba(0,0,0,.25), 0 8px 24px -18px rgba(0,0,0,.6);
+}
+body[data-theme="dark"]::before{
+  background:
+    radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+}
+body[data-theme="dark"] header{background:rgba(23,21,18,.92)}
+body[data-theme="dark"] select,
+body[data-theme="dark"] input[type=text],
+body[data-theme="dark"] input[type=password],
+body[data-theme="dark"] input[type=number],
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] .combo-panel,
+body[data-theme="dark"] .combo-item,
+body[data-theme="dark"] details.step,
+body[data-theme="dark"] .combo-empty{background:#26221d;color:var(--ink)}
+body[data-theme="dark"] .combo-panel,
+body[data-theme="dark"] .combo-item{border-color:var(--line)}
+body[data-theme="dark"] .combo-item{border-bottom-color:var(--line)}
+body[data-theme="dark"] .combo-item:hover,
+body[data-theme="dark"] .combo-item.active{background:var(--accent-tint);color:var(--accent-deep)}
+body[data-theme="dark"] .go{background:var(--accent);border-color:var(--accent-deep);color:#171512}
+body[data-theme="dark"] .go:hover{background:var(--accent-deep)}
+body[data-theme="dark"] textarea[disabled]{background:#1d1a16;color:var(--ink-soft)}
+body[data-theme="dark"] #output,
+body[data-theme="dark"] #outPane pre{color:var(--ink)}
+body[data-theme="dark"] .callout{background:var(--danger-tint);border-color:var(--danger);color:var(--danger)}
+body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+@media (prefers-color-scheme:dark){
+  body:not([data-theme="light"]){
+    --paper:#171512; --card:#201d19; --ink:#eae5dc; --ink-soft:#a89f92;
+    --line:#35302a; --line-strong:#4a4339;
+    --accent:#7fae9d; --accent-deep:#a9cfc0; --accent-tint:#28352f;
+    --amber:#c9a05a; --amber-tint:#393021;
+    --danger:#d47f70; --danger-tint:#3b2622;
+    --shadow:0 1px 2px rgba(0,0,0,.25), 0 8px 24px -18px rgba(0,0,0,.6);
+  }
+  body:not([data-theme="light"])::before{
+    background:
+      radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+  }
+  body:not([data-theme="light"]) header{background:rgba(23,21,18,.92)}
+  body:not([data-theme="light"]) select,
+  body:not([data-theme="light"]) input[type=text],
+  body:not([data-theme="light"]) input[type=password],
+  body:not([data-theme="light"]) input[type=number],
+  body:not([data-theme="light"]) textarea,
+  body:not([data-theme="light"]) .combo-panel,
+  body:not([data-theme="light"]) .combo-item,
+  body:not([data-theme="light"]) details.step,
+  body:not([data-theme="light"]) .combo-empty{background:#26221d;color:var(--ink)}
+  body:not([data-theme="light"]) .combo-panel,
+  body:not([data-theme="light"]) .combo-item{border-color:var(--line)}
+  body:not([data-theme="light"]) .combo-item{border-bottom-color:var(--line)}
+  body:not([data-theme="light"]) .combo-item:hover,
+  body:not([data-theme="light"]) .combo-item.active{background:var(--accent-tint);color:var(--accent-deep)}
+  body:not([data-theme="light"]) .go{background:var(--accent);border-color:var(--accent-deep);color:#171512}
+  body:not([data-theme="light"]) .go:hover{background:var(--accent-deep)}
+  body:not([data-theme="light"]) textarea[disabled]{background:#1d1a16;color:var(--ink-soft)}
+  body:not([data-theme="light"]) .callout{background:var(--danger-tint);border-color:var(--danger);color:var(--danger)}
+  body:not([data-theme="light"]) nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap mast">
+    <a class="brand" href="./index.html"><b>Rehumanizer</b><span>the workshop bench</span></a>
+    <nav>
+      <a href="./index.html" aria-current="page">Workbench</a>
+      <a href="./settings.html">Settings</a>
+      <a href="https://github.com/truepushkar/ai_humanizer" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <nav style="margin-left:auto">
+      <button class="ghost" id="themeBtn" type="button" aria-label="Toggle dark theme" title="Toggle dark theme">Dark</button>
+    </nav>
+    <div class="status" id="hdrStatus"><span class="dot" id="hdrDot"></span><span id="hdrTxt">not configured</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Feed it the machine's prose,<br>take back <em>the people kind</em>.</h1>
+      <p>Four passes, two hands: an LLM rewrites twice through Chinese and Japanese, then two translation engines carry it via Finnish before rebuilding it in English. Every AI fingerprint that survives one pass gets scrambled by the next.</p>
+    </div>
+    <div class="chainbox">
+      <h2>The chain</h2>
+      <div class="flow" id="flow">
+        <div class="hop" data-step="1"><i>1</i><div><b>LLM rewrite</b><small>Input → Chinese</small></div></div>
+        <div class="hop" data-step="2"><i>2</i><div><b>LLM rewrite</b><small>Chinese → Japanese</small></div></div>
+        <div class="hop" data-step="3"><i>3</i><div><b>Google Translate</b><small>Japanese → Finnish</small></div></div>
+        <div class="hop" data-step="4"><i>4</i><div><b>LibreTranslate</b><small>Finnish → English</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bench" aria-label="Text workbench">
+    <div class="pane">
+      <div class="pane-head">
+        <h2>Machine text in</h2>
+        <span class="count" id="inCount">0 / 15,000 chars</span>
+      </div>
+      <textarea id="input" maxlength="15000" placeholder="Paste the AI-generated draft here…" aria-label="Input text"></textarea>
+      <div class="controls">
+        <button class="go" id="goBtn">Humanize</button>
+        <label class="inline">via
+          <select id="interLang" aria-label="Intermediate language">
+            <option value="fi">Finnish</option>
+            <option value="de">German</option>
+            <option value="ko">Korean</option>
+          </select>
+        </label>
+        <label class="inline">to
+          <select id="tgtLang" aria-label="Target language">
+            <option value="en">English</option>
+            <option value="de">German</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="pt">Portuguese</option>
+            <option value="ru">Russian</option>
+            <option value="it">Italian</option>
+            <option value="nl">Dutch</option>
+            <option value="zh">Chinese</option>
+            <option value="ja">Japanese</option>
+          </select>
+        </label>
+        <button class="ghost" id="clearBtn">Clear</button>
+      </div>
+      <div class="callout" id="errBox" role="alert"></div>
+    </div>
+    <div class="pane" id="outPane">
+      <div class="pane-head">
+        <h2>People words out</h2>
+        <span class="count" id="outCount"></span>
+      </div>
+      <pre id="output"><span class="placeholder">The humanized result lands here. It takes a while — four engines take turns with your text.</span></pre>
+      <div class="out-tools">
+        <button class="ghost" id="copyBtn" disabled>Copy</button>
+        <button class="ghost" id="downloadBtn" disabled>Download .txt</button>
+        <button class="ghost" id="diffBtn" disabled>Compare with input</button>
+        <button class="ghost" id="regenBtn" disabled>Run again</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="trace" id="traceSec" hidden>
+    <h3>Step trace</h3>
+    <div id="trace"></div>
+  </section>
+
+  <section class="stats" id="statsSec" aria-label="Usage stats">
+    <div class="stat"><b id="stRuns">0</b><span>runs this session</span></div>
+    <div class="stat"><b id="stChars">0</b><span>characters humanized</span></div>
+    <div class="stat"><b id="stAvg">—</b><span>average run time</span></div>
+  </section>
+
+  <section class="history" id="histSec" hidden>
+    <h3>Past runs</h3>
+    <p class="sub">Stored in this browser — open one to reuse its result or full step trace.</p>
+    <table>
+      <thead><tr><th>When</th><th>Text</th><th>Model</th><th style="width:70px">Time</th><th></th></tr></thead>
+      <tbody id="histBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Made by <a href="https://github.com/truepushkar" rel="noopener" target="_blank">Pushkar Singh</a> · open source on <a href="https://github.com/truepushkar/ai_humanizer" rel="noopener" target="_blank">GitHub</a> (MIT). Detector scores are probabilistic — no guarantee rewritten text will read as human. Follow your institution's AI-use and disclosure policies.</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="module">
+
+/* ---------- theme (persisted; "auto" follows system) ---------- */
+(function(){
+  const saved = localStorage.getItem("humanizetext.theme") || "auto";
+  const apply = t => {
+    if (t === "dark") document.body.dataset.theme = "dark";
+    else if (t === "light") document.body.dataset.theme = "light";
+    else delete document.body.dataset.theme;           // auto -> media query decides
+    const btn = document.getElementById("themeBtn");
+    if (btn) {
+      const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      btn.textContent = t === "dark" ? "Light" : t === "light" ? "Dark" : (sysDark ? "Light" : "Dark");
+      btn.title = `Theme: ${t} — click to cycle dark / light / auto`;
+    }
+  };
+  const cycle = () => {
+    const order = ["auto", "dark", "light"];
+    const cur = localStorage.getItem("humanizetext.theme") || "auto";
+    const next = order[(order.indexOf(cur) + 1) % order.length];
+    localStorage.setItem("humanizetext.theme", next);
+    apply(next);
+  };
+  apply(saved);
+  const btn = document.getElementById("themeBtn");
+  if (btn) btn.addEventListener("click", cycle);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(localStorage.getItem("humanizetext.theme") || "auto"));
+})();
+
+/* Client-side replacement for the Flask-API script block. Same UI behavior,
+ * same element IDs, same visual states — only the plumbing changed:
+ * settings/history/stats live in localStorage, the pipeline runs in-page. */
+import { runPipeline } from "./pipeline.js";
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+let currentRun = null;   // {id, result, input}
+
+/* ---------- localStorage (replaces settings.json + server history) ---------- */
+const LS_KEY = "humanizetext.settings.v1";
+const LS_HIST = "humanizetext.history.v1";
+
+function loadSettings() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); }
+  catch (e) { return {}; }
+}
+function patchSettings(patch) {
+  const s = { ...loadSettings(), ...patch };
+  localStorage.setItem(LS_KEY, JSON.stringify(s));
+  return s;
+}
+
+/* ---------- toast ---------- */
+function toast(msg, err = false) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.className = "show" + (err ? " err" : "");
+  clearTimeout(t._h);
+  t._h = setTimeout(() => t.className = "", 2600);
+}
+
+/* ---------- header status ---------- */
+function refreshHeader() {
+  const s = loadSettings();
+  const ok = s.api_key && s.model && s.base_url;
+  $("#hdrDot").className = "dot" + (ok ? " ok" : "");
+  $("#hdrTxt").textContent = ok ? `${s.model} @ ${s.base_url.replace(/^https?:\/\//, "")}` : "not configured";
+}
+
+/* ---------- input counter ---------- */
+const MAX_INPUT_CHARS = 15000;
+$("#input").addEventListener("input", e => {
+  if (e.target.value.length > MAX_INPUT_CHARS) e.target.value = e.target.value.slice(0, MAX_INPUT_CHARS);
+  $("#inCount").textContent = e.target.value.length.toLocaleString() + " / 15,000 chars";
+});
+
+/* ---------- chain viz ---------- */
+function setStep(n, state){ // state: 'live' | 'done' | null
+  const hop = $(`.hop[data-step="${n}"]`);
+  if(!hop) return;
+  hop.classList.remove("live","done");
+  if(state) hop.classList.add(state);
+}
+function resetChain(){ [1,2,3,4].forEach(n=>setStep(n,null)); }
+
+/* ---------- run ---------- */
+async function startRun(){
+  const text = $("#input").value.trim();
+  if(!text){ toast("Paste some text first.", true); return; }
+  if(text.length > 15000){ toast("Text is too long (15,000 char limit).", true); return; }
+
+  const s = loadSettings();
+  if(!s.api_key || !s.base_url || !s.model){
+    toast("No LLM API key saved. Open Settings and add one.", true);
+    return;
+  }
+
+  const errBox = $("#errBox");
+  errBox.classList.remove("show");
+
+  resetChain();
+  $("#goBtn").disabled = true;
+  $("#goBtn").textContent = "Working…";
+  $("#output").innerHTML = '<span class="placeholder">The chain is running — watch the steps light up top right.</span>';
+  $("#outCount").textContent = "";
+  disableOutTools(true);
+
+  currentRun = { id: Date.now().toString(36), input: text, result: null };
+
+  try {
+    const res = await runPipeline(
+      text,
+      { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
+      { intermediate: $("#interLang").value, target: $("#tgtLang").value },
+      (n, state) => {
+        setStep(n, state === "live" ? "live" : "done");
+        if(state === "live") $("#outCount").textContent = `step ${n} of 4…`;
+      },
+    );
+    [1,2,3,4].forEach(n=>setStep(n,"done"));
+    currentRun.result = res.result;
+    finishRun(res);
+  } catch (e) {
+    resetChain();
+    $("#goBtn").disabled = false;
+    $("#goBtn").textContent = "Humanize";
+    $("#outCount").textContent = "failed";
+    const errBox2 = $("#errBox");
+    errBox2.textContent = e.message || String(e) || "The run failed.";
+    errBox2.classList.add("show");
+    toast("Run failed — see details on the bench.", true);
+  }
+}
+
+function finishRun(res){
+  $("#goBtn").disabled = false;
+  $("#goBtn").textContent = "Humanize";
+  $("#output").textContent = res.result;
+  $("#outCount").textContent = res.result.length.toLocaleString() + " chars";
+  disableOutTools(false);
+  renderTrace(res.steps);
+  addHistory(res);
+  refreshStats();
+  refreshHistory();
+  toast("Done in " + (res.elapsedMs/1000).toFixed(1) + "s");
+}
+
+function disableOutTools(dis){
+  ["copyBtn","downloadBtn","diffBtn","regenBtn"].forEach(id => $("#"+id).disabled = dis);
+}
+
+/* ---------- step trace ---------- */
+function renderTrace(steps){
+  const sec = $("#traceSec");
+  if(!steps || !steps.length){ sec.hidden = true; return; }
+  sec.hidden = false;
+  $("#trace").innerHTML = steps.map(s => `
+    <details class="step">
+      <summary>
+        <span class="badge ${s.engine === "LLM" ? "llm" : "mt"}">${s.engine}</span>
+        <span>${s.direction}</span>
+        <span class="count">${s.length.toLocaleString()} chars</span>
+        <span class="arrow">▶</span>
+      </summary>
+      <div class="body"></div>
+    </details>`).join("");
+  $$("#trace details.step").forEach((d,i)=>{
+    d.querySelector(".body").textContent = steps[i].output || "";
+  });
+}
+
+/* ---------- copy / download / diff / rerun ---------- */
+$("#copyBtn").addEventListener("click", async ()=>{
+  try{ await navigator.clipboard.writeText(currentRun.result); toast("Copied to clipboard."); }
+  catch(e){ toast("Clipboard blocked by the browser.", true); }
+});
+
+$("#downloadBtn").addEventListener("click", ()=>{
+  const blob = new Blob([currentRun.result], {type:"text/plain"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "humanized.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$("#diffBtn").addEventListener("click", ()=>{
+  if(!currentRun) return;
+  renderDiffInline();
+});
+
+/* simple word-level diff, inline in the trace area */
+function renderDiffInline(){
+  const sec = $("#traceSec");
+  sec.hidden = false;
+  let h = '<h3>Input vs output</h3><div style="font-size:14.5px;line-height:1.9;background:#fff;border:1px solid var(--line-strong);border-radius:var(--radius);padding:16px;max-height:420px;overflow:auto">';
+  const a = currentRun.input.split(/(\s+)/);
+  const b = (currentRun.result||"").split(/(\s+)/);
+  // LCS on words is heavy for big texts; do a light pass: line up sentences
+  const sa = a.join("").split(/(?<=[.!?])\s+/), sb = b.join("").split(/(?<=[.!?])\s+/);
+  const n = Math.max(sa.length, sb.length);
+  for(let i=0;i<n;i++){
+    const x = sa[i], y = sb[i];
+    if(x===undefined) h += `<div style="color:var(--accent-deep)"><ins>${esc(y)}</ins></div>`;
+    else if(y===undefined) h += `<div style="color:var(--danger);text-decoration:line-through">${esc(x)}</div>`;
+    else if(x===y) h += `<div style="color:var(--ink-soft)">${esc(y)}</div>`;
+    else h += `<div><span style="color:var(--danger);text-decoration:line-through">${esc(x)}</span> <span style="color:var(--accent-deep)"><ins>${esc(y)}</ins></span></div>`;
+  }
+  h += "</div>";
+  // prepend after title, replace old diff if any
+  const old = $("#diffBox"); if(old) old.remove();
+  const div = document.createElement("div");
+  div.id = "diffBox";
+  div.innerHTML = h;
+  sec.appendChild(div);
+  sec.scrollIntoView({behavior:"smooth"});
+}
+function esc(s){ return (s||"").replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+$("#regenBtn").addEventListener("click", startRun);
+
+$("#goBtn").addEventListener("click", startRun);
+$("#clearBtn").addEventListener("click", ()=>{
+  $("#input").value = "";
+  $("#inCount").textContent = "0 / 15,000 chars";
+  $("#input").focus();
+});
+
+/* ---------- stats & history (localStorage) ---------- */
+function readHist(){
+  try { return JSON.parse(localStorage.getItem(LS_HIST) || "[]"); }
+  catch (e) { return []; }
+}
+function writeHist(h){ localStorage.setItem(LS_HIST, JSON.stringify(h.slice(0, 60))); }
+
+function addHistory(res){
+  const h = readHist();
+  h.unshift({
+    id: currentRun.id,
+    timestamp: new Date().toISOString(),
+    input_preview: currentRun.input.slice(0, 200),
+    result: res.result,
+    input: currentRun.input,
+    steps: res.steps,
+    model: loadSettings().model,
+    processing_time_ms: res.elapsedMs,
+    chars_in: currentRun.input.length,
+    chars_out: res.result.length,
+  });
+  writeHist(h);
+}
+
+function refreshStats(){
+  const h = readHist();
+  $("#stRuns").textContent = h.length.toLocaleString();
+  $("#stChars").textContent = h.reduce((a, x) => a + (x.chars_out || 0), 0).toLocaleString();
+  $("#stAvg").textContent = h.length ? (h.reduce((a, x) => a + (x.processing_time_ms || 0), 0) / h.length / 1000).toFixed(1) + "s" : "—";
+}
+
+function refreshHistory(){
+  const h = readHist();
+  const body = $("#histBody");
+  $("#histSec").hidden = !h.length;
+  body.innerHTML = h.map(it => `
+    <tr>
+      <td>${new Date(it.timestamp).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</td>
+      <td><span class="pv">${esc(it.input_preview || "")}…</span></td>
+      <td>${esc(it.model||"")}</td>
+      <td>${((it.processing_time_ms||0)/1000).toFixed(1)}s</td>
+      <td><div class="rowbtns">
+        <button class="ghost" onclick="loadHistory('${it.id}')">Open</button>
+        <button class="ghost" onclick="delHistory('${it.id}')">Delete</button>
+      </div></td>
+    </tr>`).join("") || '<tr><td colspan="5" class="empty">Nothing yet — humanize something.</td></tr>';
+}
+
+window.loadHistory = async function(id){
+  const it = readHist().find(h => h.id === id);
+  if(!it) return;
+  currentRun = { id: it.id + "-r", input: it.input, result: it.result };
+  $("#input").value = it.input;
+  $("#inCount").textContent = Math.min(it.input.length, 15000).toLocaleString() + " / 15,000 chars";
+  $("#output").textContent = it.result;
+  $("#outCount").textContent = it.result.length.toLocaleString() + " chars";
+  disableOutTools(false);
+  renderTrace(it.steps);
+  [1,2,3,4].forEach(n=>setStep(n,"done"));
+  window.scrollTo({top:0, behavior:"smooth"});
+  toast("Loaded past run.");
+};
+
+window.delHistory = async function(id){
+  writeHist(readHist().filter(h => h.id !== id));
+  refreshHistory();
+  refreshStats();
+  toast("Deleted.");
+};
+
+refreshHeader(); refreshStats(); refreshHistory();
+</script>
+</body>
+</html>

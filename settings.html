@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings — Rehumanizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf7f2; --card:#ffffff; --ink:#1f1a14; --ink-soft:#5c554b;
+  --line:#e4ddd2; --line-strong:#c9bfae;
+  --accent:#2f5d50; --accent-deep:#1e4238; --accent-tint:#e8efeb;
+  --amber:#9a6b1f; --amber-tint:#f6eedd;
+  --danger:#8c3226; --danger-tint:#f7e7e4;
+  --radius:6px; --radius-lg:12px;
+  --shadow:0 1px 2px rgba(31,26,20,.05), 0 8px 24px -18px rgba(31,26,20,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:15.5px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:radial-gradient(rgba(31,26,20,.028) 1px,transparent 1px),radial-gradient(rgba(31,26,20,.02) 1px,transparent 1px);
+  background-size:5px 5px,9px 9px;background-position:0 0,3px 4px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+header{border-bottom:1px solid var(--line-strong);background:rgba(250,247,242,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:50}
+.mast{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:inherit}
+.brand b{font-family:"Newsreader",serif;font-weight:600;font-size:24px;letter-spacing:-.01em}
+.brand span{font-family:"Newsreader",serif;font-style:italic;font-size:15px;color:var(--ink-soft)}
+nav{display:flex;gap:4px}
+nav a{text-decoration:none;color:var(--ink-soft);padding:8px 14px;border-radius:999px;font-weight:500;font-size:14.5px}
+nav a:hover{background:var(--accent-tint);color:var(--accent-deep)}
+nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.set-wrap{max-width:680px;margin:0 auto;padding:36px 20px 60px}
+.set-wrap h1{font-family:"Newsreader",serif;font-weight:600;font-size:34px;margin:0 0 6px;letter-spacing:-.01em}
+.set-wrap .lede{color:var(--ink-soft);margin:0 0 26px}
+form.settings{display:flex;flex-direction:column;gap:20px}
+fieldset{border:1px solid var(--line-strong);border-radius:var(--radius-lg);background:var(--card);padding:20px 22px 22px;margin:0;box-shadow:var(--shadow)}
+legend{font-family:"Newsreader",serif;font-weight:600;font-size:18px;padding:0 8px}
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.field>label{display:block;font-weight:600;font-size:13.5px;margin-bottom:6px}
+.field .hint{font-weight:400;color:var(--ink-soft);font-size:12.5px;margin-top:5px;line-height:1.5}
+input[type=text],input[type=password],input[type=number],select{
+  width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--radius);background:#fff;color:var(--ink);outline:none;
+}
+input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
+.combo{position:relative}
+.combo-panel{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--line-strong);border-radius:var(--radius);box-shadow:0 10px 28px -12px rgba(31,26,20,.35);max-height:250px;overflow:auto;z-index:70;display:none}
+.combo-panel.open{display:block}
+.combo-item{display:block;width:100%;text-align:left;padding:9px 12px;font-size:13.5px;background:#fff;border:0;border-bottom:1px solid var(--line);cursor:pointer;color:var(--ink);font-family:inherit;border-radius:0}
+.combo-item:last-child{border-bottom:0}
+.combo-item:hover,.combo-item.active{background:var(--accent-tint);color:var(--accent-deep)}
+.combo-empty{padding:10px 12px;font-size:13px;color:var(--ink-soft)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;transition:all .15s}
+.primary{background:var(--accent);border:1.5px solid var(--accent-deep);color:#fff;padding:11px 26px;font-size:15px}
+.primary:hover{background:var(--accent-deep)}
+.ghost{background:transparent;border:1px solid var(--line-strong);color:var(--ink-soft);padding:10px 18px;font-size:14px;font-weight:500}
+.ghost:hover{border-color:var(--ink);color:var(--ink)}
+.ghost[disabled]{opacity:.45;cursor:not-allowed}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.testresult{font-size:13.5px;font-weight:600}
+.testresult.ok{color:var(--accent-deep)}
+.testresult.bad{color:var(--danger)}
+.datalist-note{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--paper);padding:11px 20px;border-radius:8px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:all .25s;z-index:100;max-width:88vw}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.err{background:var(--danger)}
+footer{padding:22px 0 34px;color:var(--ink-soft);font-size:13px}
+footer a{color:var(--accent-deep)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- dark theme ---------- */
+:root{color-scheme:light dark}
+body[data-theme="dark"]{
+  --paper:#171512; --card:#201d19; --ink:#eae5dc; --ink-soft:#a89f92;
+  --line:#35302a; --line-strong:#4a4339;
+  --accent:#7fae9d; --accent-deep:#a9cfc0; --accent-tint:#28352f;
+  --amber:#c9a05a; --amber-tint:#393021;
+  --danger:#d47f70; --danger-tint:#3b2622;
+  --shadow:0 1px 2px rgba(0,0,0,.25), 0 8px 24px -18px rgba(0,0,0,.6);
+}
+body[data-theme="dark"]::before{
+  background:
+    radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+}
+body[data-theme="dark"] header{background:rgba(23,21,18,.92)}
+body[data-theme="dark"] select,
+body[data-theme="dark"] input[type=text],
+body[data-theme="dark"] input[type=password],
+body[data-theme="dark"] input[type=number],
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] .combo-panel,
+body[data-theme="dark"] .combo-item,
+body[data-theme="dark"] details.step,
+body[data-theme="dark"] .combo-empty{background:#26221d;color:var(--ink)}
+body[data-theme="dark"] .combo-panel,
+body[data-theme="dark"] .combo-item{border-color:var(--line)}
+body[data-theme="dark"] .combo-item{border-bottom-color:var(--line)}
+body[data-theme="dark"] .combo-item:hover,
+body[data-theme="dark"] .combo-item.active{background:var(--accent-tint);color:var(--accent-deep)}
+body[data-theme="dark"] .go{background:var(--accent);border-color:var(--accent-deep);color:#171512}
+body[data-theme="dark"] .go:hover{background:var(--accent-deep)}
+body[data-theme="dark"] textarea[disabled]{background:#1d1a16;color:var(--ink-soft)}
+body[data-theme="dark"] #output,
+body[data-theme="dark"] #outPane pre{color:var(--ink)}
+body[data-theme="dark"] .callout{background:var(--danger-tint);border-color:var(--danger);color:var(--danger)}
+body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+@media (prefers-color-scheme:dark){
+  body:not([data-theme="light"]){
+    --paper:#171512; --card:#201d19; --ink:#eae5dc; --ink-soft:#a89f92;
+    --line:#35302a; --line-strong:#4a4339;
+    --accent:#7fae9d; --accent-deep:#a9cfc0; --accent-tint:#28352f;
+    --amber:#c9a05a; --amber-tint:#393021;
+    --danger:#d47f70; --danger-tint:#3b2622;
+    --shadow:0 1px 2px rgba(0,0,0,.25), 0 8px 24px -18px rgba(0,0,0,.6);
+  }
+  body:not([data-theme="light"])::before{
+    background:
+      radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+  }
+  body:not([data-theme="light"]) header{background:rgba(23,21,18,.92)}
+  body:not([data-theme="light"]) select,
+  body:not([data-theme="light"]) input[type=text],
+  body:not([data-theme="light"]) input[type=password],
+  body:not([data-theme="light"]) input[type=number],
+  body:not([data-theme="light"]) textarea,
+  body:not([data-theme="light"]) .combo-panel,
+  body:not([data-theme="light"]) .combo-item,
+  body:not([data-theme="light"]) details.step,
+  body:not([data-theme="light"]) .combo-empty{background:#26221d;color:var(--ink)}
+  body:not([data-theme="light"]) .combo-panel,
+  body:not([data-theme="light"]) .combo-item{border-color:var(--line)}
+  body:not([data-theme="light"]) .combo-item{border-bottom-color:var(--line)}
+  body:not([data-theme="light"]) .combo-item:hover,
+  body:not([data-theme="light"]) .combo-item.active{background:var(--accent-tint);color:var(--accent-deep)}
+  body:not([data-theme="light"]) .go{background:var(--accent);border-color:var(--accent-deep);color:#171512}
+  body:not([data-theme="light"]) .go:hover{background:var(--accent-deep)}
+  body:not([data-theme="light"]) textarea[disabled]{background:#1d1a16;color:var(--ink-soft)}
+  body:not([data-theme="light"]) .callout{background:var(--danger-tint);border-color:var(--danger);color:var(--danger)}
+  body:not([data-theme="light"]) nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap mast">
+    <a class="brand" href="./index.html"><b>Rehumanizer</b><span>the workshop bench</span></a>
+    <nav style="margin-left:auto">
+      <button class="ghost" id="themeBtn" type="button" aria-label="Toggle dark theme" title="Toggle dark theme">Dark</button>
+      <a href="./index.html">Workbench</a>
+      <a href="./settings.html" aria-current="page">Settings</a>
+      <a href="https://github.com/truepushkar/ai_humanizer" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="set-wrap">
+  <h1>Settings</h1>
+  <p class="lede">Point the pipeline at any OpenAI-compatible API and pick your model. Keys are stored in this browser only (localStorage) and never sent anywhere except the endpoint you configure.</p>
+
+  <form class="settings" id="setForm">
+    <fieldset>
+      <legend>LLM engine</legend>
+      <div class="field">
+        <label for="provider">Provider preset</label>
+        <select id="provider">
+          <option value="deepseek">DeepSeek</option>
+          <option value="openrouter">OpenRouter</option>
+          <option value="openai">OpenAI</option>
+          <option value="groq">Groq</option>
+          <option value="atlascloud">Atlas Cloud</option>
+          <option value="orcarouter">OrcaRouter</option>
+          <option value="custom">Custom (any OpenAI-compatible)</option>
+        </select>
+        <div class="hint">Choosing a preset fills the base URL and a default model. Pick "Custom" to enter your own.</div>
+      </div>
+      <div class="field">
+        <label for="baseUrl">Base URL</label>
+        <input type="text" id="baseUrl" placeholder="https://api.deepseek.com" spellcheck="false">
+        <div class="hint">The root of an OpenAI-compatible API. /chat/completions and /models are appended automatically.</div>
+      </div>
+      <div class="field">
+        <label for="apiKey">API key</label>
+        <input type="password" id="apiKey" placeholder="sk-…" autocomplete="off">
+        <div class="hint" id="keyHint">Leave blank to keep the saved key.</div>
+      </div>
+      <div class="field">
+        <label for="model">Model</label>
+        <div class="btnrow" style="margin-bottom:6px">
+          <div class="combo" style="flex:1">
+            <input type="text" id="model" placeholder="deepseek-chat — click to browse models" spellcheck="false" autocomplete="off"
+                   role="combobox" aria-expanded="false" aria-controls="modelPanel" aria-autocomplete="list" style="width:100%">
+            <div class="combo-panel" id="modelPanel" role="listbox" aria-label="Available models"></div>
+          </div>
+          <button type="button" class="ghost" id="fetchBtn">Fetch models</button>
+        </div>
+        <div class="hint">Click the field to browse every model the endpoint offers. Type to filter the list; Fetch models refreshes it.</div>
+        <div class="testresult" id="testResult"></div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="temp">Temperature</label>
+          <input type="number" id="temp" min="0" max="2" step="0.1" value="1.3">
+          <div class="hint">1.3 is the pipeline's tested sweet spot.</div>
+        </div>
+        <div class="field">
+          <label for="tgtLang">Output language</label>
+          <select id="tgtLang">
+            <option value="en">English</option><option value="de">German</option><option value="fr">French</option>
+            <option value="es">Spanish</option><option value="pt">Portuguese</option><option value="ru">Russian</option>
+            <option value="it">Italian</option><option value="nl">Dutch</option>
+            <option value="zh">Chinese</option><option value="ja">Japanese</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Translation hop — LibreTranslate (free)</legend>
+      <div class="field">
+        <label>Step 4 engine</label>
+        <input type="text" value="LibreTranslate (community mirrors) + Google fallback" disabled>
+        <div class="hint">No API key needed. Step 4 tries free LibreTranslate community mirrors
+        (translate.disroot.org and friends) first, with the free Google endpoint as backup.
+        Lingva, MyMemory and keyed engines (NiuTrans) were removed — dead or paid.</div>
+      </div>
+      <div class="field">
+        <label for="interLang">Intermediate language</label>
+        <select id="interLang">
+          <option value="fi">Finnish (default — deepest restructuring)</option>
+          <option value="de">German</option>
+          <option value="ko">Korean</option>
+        </select>
+        <div class="hint">The language your text passes through between Japanese and the output.</div>
+      </div>
+    </fieldset>
+
+    <div class="btnrow">
+      <button type="submit" class="primary">Save settings</button>
+      <button type="button" class="ghost" id="testBtn">Test connection</button>
+    </div>
+  </form>
+</main>
+
+<footer class="wrap">
+  <p>Made by <a href="https://github.com/truepushkar" rel="noopener" target="_blank">Pushkar Singh</a> · open source on <a href="https://github.com/truepushkar/ai_humanizer" rel="noopener" target="_blank">GitHub</a> (MIT). Follow your institution's AI-use and disclosure policies.</p>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+
+/* ---------- theme (persisted; "auto" follows system) ---------- */
+(function(){
+  const saved = localStorage.getItem("humanizetext.theme") || "auto";
+  const apply = t => {
+    if (t === "dark") document.body.dataset.theme = "dark";
+    else if (t === "light") document.body.dataset.theme = "light";
+    else delete document.body.dataset.theme;           // auto -> media query decides
+    const btn = document.getElementById("themeBtn");
+    if (btn) {
+      const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      btn.textContent = t === "dark" ? "Light" : t === "light" ? "Dark" : (sysDark ? "Light" : "Dark");
+      btn.title = `Theme: ${t} — click to cycle dark / light / auto`;
+    }
+  };
+  const cycle = () => {
+    const order = ["auto", "dark", "light"];
+    const cur = localStorage.getItem("humanizetext.theme") || "auto";
+    const next = order[(order.indexOf(cur) + 1) % order.length];
+    localStorage.setItem("humanizetext.theme", next);
+    apply(next);
+  };
+  apply(saved);
+  const btn = document.getElementById("themeBtn");
+  if (btn) btn.addEventListener("click", cycle);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(localStorage.getItem("humanizetext.theme") || "auto"));
+})();
+
+/* Client-side replacement for the Flask-API script block on Settings.
+ * Same fields, same layout, same behaviors — settings persist in localStorage. */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+const LS_KEY = "humanizetext.settings.v1";
+
+const PRESETS = {
+  deepseek:   {base_url:"https://api.deepseek.com",      model:"deepseek-chat"},
+  openrouter: {base_url:"https://openrouter.ai/api/v1",  model:"deepseek/deepseek-chat"},
+  openai:     {base_url:"https://api.openai.com/v1",     model:"gpt-4o-mini"},
+  groq:       {base_url:"https://api.groq.com/openai/v1", model:"llama-3.3-70b-versatile"},
+  atlascloud: {base_url:"https://api.atlascloud.ai/v1",  model:"qwen/qwen3.5-flash"},
+  orcarouter: {base_url:"https://api.orcarouter.ai/v1",  model:"deepseek/deepseek-chat"},
+  custom:     {base_url:"", model:""}
+};
+
+function toast(msg, err=false){
+  const t = $("#toast");
+  t.textContent = msg; t.className = "show" + (err ? " err" : "");
+  clearTimeout(t._h); t._h = setTimeout(()=>t.className="", 2600);
+}
+
+function loadStored(){ try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch(e){ return {}; } }
+function maskKey(k){ return k ? (k.length > 8 ? k.slice(0,4) + "\u2026" + k.slice(-4) : "\u2022\u2022\u2022\u2022") : ""; }
+
+/* ---------- load current settings ---------- */
+function loadSettings(){
+  const s = loadStored();
+  $("#provider").value = s.provider || "custom";
+  $("#baseUrl").value = s.base_url || "";
+  $("#model").value = s.model_chosen ? (s.model || "") : "";
+  $("#temp").value = s.temperature ?? 1.3;
+  $("#interLang").value = s.intermediate_lang || "fi";
+  $("#tgtLang").value = s.target_lang || "en";
+  $("#keyHint").textContent = s.api_key
+    ? `Saved key: ${maskKey(s.api_key)} — leave blank to keep it.`
+    : "No key saved yet.";
+  $("#provider").dispatchEvent(new Event("change"));
+  // auto-load the model list so the model dropdown is populated on page open
+  if(($("#baseUrl").value||"").trim()) fetchModels(true);
+}
+
+/* ---------- provider preset switch ---------- */
+$("#provider").addEventListener("change", e => {
+  const p = PRESETS[e.target.value];
+  if(!p) return;
+  if(p.base_url) $("#baseUrl").value = p.base_url;
+  if(p.model) $("#model").value = p.model;
+});
+
+/* ---------- fetch models ---------- */
+let MODELS = [];            // last fetched model ids
+let activeIdx = -1;         // keyboard-highlighted option
+
+function renderModelPanel(filter=""){
+  const panel = $("#modelPanel");
+  const q = filter.trim().toLowerCase();
+  const list = q ? MODELS.filter(m => m.toLowerCase().includes(q)) : MODELS;
+  if(!MODELS.length){
+    panel.innerHTML = '<div class="combo-empty">No models loaded yet — click \u201CFetch models\u201D.</div>';
+  }else if(!list.length){
+    panel.innerHTML = `<div class="combo-empty">No model matches \u201C${filter.replace(/[&<>]/g,"")}\u201D.</div>`;
+  }else{
+    panel.innerHTML = list.map(m =>
+      `<button type="button" class="combo-item" role="option" data-model="${m.replace(/"/g,"&quot;")}">${m.replace(/[&<>]/g,"")}</button>`
+    ).join("");
+  }
+  activeIdx = -1;
+}
+
+function openPanel(useFilter=false){
+  const panel = $("#modelPanel");
+  // click/focus shows the FULL list; only user typing filters.
+  // (the saved value itself must never filter the list to zero)
+  renderModelPanel(useFilter ? $("#model").value : "");
+  panel.classList.add("open");
+  $("#model").setAttribute("aria-expanded","true");
+}
+function closePanel(){
+  $("#modelPanel").classList.remove("open");
+  $("#model").setAttribute("aria-expanded","false");
+}
+
+function moveActive(delta){
+  const items = $$("#modelPanel .combo-item");
+  if(!items.length) return;
+  activeIdx = (activeIdx + delta + items.length) % items.length;
+  items.forEach((el,i)=>el.classList.toggle("active", i===activeIdx));
+  items[activeIdx].scrollIntoView({block:"nearest"});
+}
+
+async function fetchModels(silent=false){
+  const btn = $("#fetchBtn");
+  const res = $("#testResult");
+  if(!silent){ btn.disabled = true; btn.textContent = "Fetching\u2026"; }
+  if(!silent){ res.className = "testresult"; res.textContent = ""; }
+  try{
+    const base = $("#baseUrl").value.trim().replace(/\/+$/,"");
+    const key = $("#apiKey").value.trim() || loadStored().api_key || "";
+    const r = await fetch(base + "/models", {
+      headers: key ? { "Authorization": "Bearer " + key } : {},
+    });
+    if(!r.ok){
+      if(!silent){ res.className="testresult bad"; res.textContent = `HTTP ${r.status} — check the base URL and key.`; }
+      return false;
+    }
+    const d = await r.json();
+    MODELS = (Array.isArray(d?.data) ? d.data : Array.isArray(d) ? d : [])
+      .map(m => typeof m === "string" ? m : m?.id).filter(Boolean);
+    renderModelPanel("");   // never filter the fresh list by the saved/current value
+    if(!silent){
+      openPanel();
+      res.className="testresult ok";
+      res.textContent = `Found ${MODELS.length} models — pick one from the list under the field.`;
+    }
+    return true;
+  }catch(e){
+    if(!silent){ res.className="testresult bad"; res.textContent = "Network error."; }
+    return false;
+  }finally{
+    if(!silent){ btn.disabled = false; btn.textContent = "Fetch models"; }
+  }
+}
+
+$("#fetchBtn").addEventListener("click", () => fetchModels(false));
+
+/* ---------- model combobox behavior ---------- */
+const modelInput = $("#model");
+function markModelChosen() {
+  const st = loadStored();
+  if (modelInput.value.trim() && !st.model_chosen) {
+    localStorage.setItem(LS_KEY, JSON.stringify({ ...st, model: modelInput.value.trim(), model_chosen: true }));
+  }
+}
+modelInput.addEventListener("change", markModelChosen);
+
+modelInput.addEventListener("focus", () => { if(MODELS.length) openPanel(); });
+modelInput.addEventListener("click",  () => { if(MODELS.length) openPanel(); });
+
+modelInput.addEventListener("input", () => {
+  if(MODELS.length) openPanel(true);      // re-renders with the typed filter
+});
+
+modelInput.addEventListener("keydown", e => {
+  if(!$("#modelPanel").classList.contains("open")){
+    if(e.key === "ArrowDown" && MODELS.length){ openPanel(); e.preventDefault(); }
+    return;
+  }
+  if(e.key === "ArrowDown"){ moveActive(1); e.preventDefault(); }
+  else if(e.key === "ArrowUp"){ moveActive(-1); e.preventDefault(); }
+  else if(e.key === "Enter"){
+    const items = $$("#modelPanel .combo-item");
+    if(activeIdx >= 0 && items[activeIdx]){ items[activeIdx].click(); e.preventDefault(); }
+    else closePanel();
+  }
+  else if(e.key === "Escape"){ closePanel(); }
+});
+
+// highlight the currently-saved model when the full list opens
+$("#modelPanel").addEventListener("mouseover", e => {
+  const btn = e.target.closest(".combo-item");
+  if(!btn) return;
+  $$("#modelPanel .combo-item").forEach(el => el.classList.toggle("active", el === btn));
+});
+
+function pickModel(e){
+  const btn = e.target.closest(".combo-item");
+  if(!btn) return;
+  e.preventDefault();                     // keep focus in the input
+  modelInput.value = btn.dataset.model;
+  markModelChosen();
+  closePanel();
+  res_hint();
+}
+$("#modelPanel").addEventListener("mousedown", pickModel);
+$("#modelPanel").addEventListener("click", pickModel);   // covers programmatic/assistive clicks
+
+function res_hint(){
+  const r = $("#testResult");
+  r.className = "testresult ok";
+  r.textContent = `Model set to ${modelInput.value.trim()}. Remember to Save settings.`;
+}
+
+document.addEventListener("click", e => {
+  if(!e.target.closest(".combo")) closePanel();
+}, true);
+
+/* ---------- test connection ---------- */
+$("#testBtn").addEventListener("click", async () => {
+  const res = $("#testResult");
+  const btn = $("#testBtn");
+  btn.disabled = true;
+  res.className="testresult"; res.textContent="Pinging\u2026";
+  try{
+    // save first so the ping can use the (possibly new) key
+    await save(false);
+    const s = loadStored();
+    const base = s.base_url.replace(/\/+$/,"");
+    const key = s.api_key || "";
+    const model = s.model || "";
+    const r = await fetch(base + "/chat/completions", {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + key },
+      body: JSON.stringify({ model, messages:[{role:"user",content:"ping"}], max_tokens:5, temperature:0 }),
+    });
+    if(r.ok){ res.className="testresult ok"; res.textContent = `Connected — ${model} responded.`; }
+    else {
+      let msg = "";
+      try { msg = (await r.json())?.error?.message || ""; } catch(e){}
+      res.className="testresult bad";
+      res.textContent = `HTTP ${r.status}: ${msg || r.statusText}`;
+    }
+  }catch(e){
+    res.className="testresult bad"; res.textContent="Network error.";
+  }finally{ btn.disabled=false; }
+});
+
+/* ---------- save ---------- */
+async function save(notify=true){
+  const patch = {
+    provider: $("#provider").value,
+    base_url: $("#baseUrl").value.trim().replace(/\/+$/,""),
+    temperature: parseFloat($("#temp").value),
+    intermediate_lang: $("#interLang").value,
+    target_lang: $("#tgtLang").value,
+  };
+  const modelVal = $("#model").value.trim();
+  if (modelVal) { patch.model = modelVal; patch.model_chosen = true; }
+  else { patch.model = ""; patch.model_chosen = false; }   // empty Model stays empty
+  if($("#apiKey").value.trim()) patch.api_key = $("#apiKey").value.trim();
+
+  localStorage.setItem(LS_KEY, JSON.stringify({ ...loadStored(), ...patch }));
+  if(notify){
+    toast("Saved.");
+    $("#apiKey").value="";
+    loadSettings();
+  }
+  return true;
+}
+
+$("#setForm").addEventListener("submit", async e => { e.preventDefault(); await save(true); });
+
+loadSettings();
+</script>
+</body>
+</html>
