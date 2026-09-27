@@ -10,7 +10,7 @@ const FREE_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
 const TRANSIENT = new Set([429, 502, 503, 504]);
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
-async function freeCall(messages, tries = 2) {
+async function freeCall(messages, { temperature = 1.3, max_tokens = 16384 } = {}, tries = 2) {
   let lastErr;
   for (let attempt = 0; attempt <= tries; attempt++) {
     try {
@@ -21,8 +21,8 @@ async function freeCall(messages, tries = 2) {
           model: FREE_MODEL,
           messages,
           stream: false,
-          max_tokens: 4096,
-          temperature: 0.9,
+          max_tokens,
+          temperature,
         }),
       });
       if (TRANSIENT.has(r.status) && attempt < tries) {
@@ -34,6 +34,9 @@ async function freeCall(messages, tries = 2) {
       if (!r.ok) throw new Error(`Free API HTTP ${r.status}: ${r.statusText}`);
 
       const d = await r.json();
+      if (d.choices?.[0]?.finish_reason === "length") {
+        throw new Error("Free API output hit the token limit and was truncated — try shorter text, or use your own API key in Settings.");
+      }
       const text = (d.choices?.[0]?.message?.content || "").trim();
       if (!text) throw new Error("Free API returned an empty response — try again, or use your own API key in Settings.");
       return text;
@@ -53,8 +56,9 @@ async function freeCall(messages, tries = 2) {
   throw lastErr || new Error("Free API unreachable");
 }
 
-/* Same rewrite task as the keyed LLM path, but routed through the free endpoint. */
-export async function freeRewrite(text, targetLanguage, { history = null, lengthHint = "" } = {}) {
+/* Same rewrite task as the keyed LLM path, but routed through the free endpoint.
+ * temperature follows the user's Settings value (default 1.3, the tested sweet spot). */
+export async function freeRewrite(text, targetLanguage, { history = null, lengthHint = "", temperature = 1.3 } = {}) {
   const task = `翻译为${targetLanguage}，去掉 AI 味道，拟人化改写，只输出结果：`;
   const messages = [{ role: "system", content: "你是一个专业的文案改写专家,精通多语言本地化。" }];
   if (history) {
@@ -65,5 +69,5 @@ export async function freeRewrite(text, targetLanguage, { history = null, length
     role: "user",
     content: lengthHint ? `${task}\n重要：${lengthHint}\n${text}` : `${task}\n${text}`,
   });
-  return freeCall(messages);
+  return freeCall(messages, { temperature });
 }

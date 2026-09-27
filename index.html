@@ -615,7 +615,7 @@ async function startRun(){
     try {
       res = await runPipeline(
         text,
-        useFree ? { mode: "free" } : { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
+        useFree ? { mode: "free", temperature: Number(s.temperature) || 1.3 } : { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
         { intermediate: $("#interLang").value, target: $("#tgtLang").value },
         (n, state) => {
           setStep(n, state === "live" ? "live" : "done");

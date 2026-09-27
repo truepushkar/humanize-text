@@ -204,14 +204,14 @@ export async function runPipeline(text, cfg, { intermediate = "fi", target = "en
 
   onStep(1, "live");
   const step1 = useFree
-    ? await freeRewrite(text, "中文")
+    ? await freeRewrite(text, "中文", { temperature: cfg?.temperature ?? 1.3 })
     : await llmRewriteClamped(text, "中文", cfg, { history: null });
   steps.push({ step: 1, engine: useFree ? "Free API" : "LLM", direction: `Input → Chinese (rewrite)`, output: step1, length: step1.length });
   onStep(1, "done", steps[0]);
 
   onStep(2, "live");
   const step2 = useFree
-    ? await freeRewrite(step1, "日语", { history: { input: text, output: step1 } })
+    ? await freeRewrite(step1, "日语", { history: { input: text, output: step1 }, temperature: cfg?.temperature ?? 1.3 })
     : await llmRewriteClamped(step1, "日语", cfg, { history: { input: text, output: step1 } });
   steps.push({ step: 2, engine: useFree ? "Free API" : "LLM", direction: `Chinese → Japanese (rewrite)`, output: step2, length: step2.length });
   onStep(2, "done", steps[1]);
