@@ -1,12 +1,12 @@
 /* Free default rewrite endpoint — your Cloudflare Worker proxy to
- * Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct-fp8).
+ * Cloudflare Workers AI (@cf/meta/llama-3.3-70b-instruct-fp8-fast).
  * OpenAI-compatible JSON, CORS-open (Access-Control-Allow-Origin: *),
  * no API key needed. Rate limits apply; quality is below a paid LLM —
  * the UI nudges users toward their own API key for better rewrites.
  */
 
 const FREE_ENDPOINT = "https://llama.pushkarsingh4343.workers.dev/v1/chat/completions";
-const FREE_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
+const FREE_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const TRANSIENT = new Set([429, 502, 503, 504]);
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
