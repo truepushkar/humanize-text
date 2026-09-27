@@ -55,8 +55,8 @@ header{border-bottom:1px solid var(--line-strong);background:rgba(250,247,242,.9
 .brand span{font-family:"Newsreader",serif;font-style:italic;font-size:15px;color:var(--ink-soft)}
 nav{display:flex;gap:4px;align-items:center}
 nav a{
-  text-decoration:none;color:var(--ink-soft);padding:8px 14px;border-radius:999px;
-  font-weight:500;font-size:14.5px;transition:background .15s,color .15s;
+  text-decoration:none;color:var(--ink-soft);padding:8px 12px;border-radius:999px;
+  font-weight:500;font-size:14px;transition:background .15s,color .15s;white-space:nowrap;
 }
 nav a:hover{background:var(--accent-tint);color:var(--accent-deep)}
 nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
@@ -94,10 +94,22 @@ header .status{
 @keyframes pulse{50%{transform:scale(1.14)}}
 .hop b{font-weight:600;font-size:14.5px}
 .hop small{display:block;color:var(--ink-soft);font-size:13px;margin-top:1px}
+/* ---------- mobile ---------- */
 @media (max-width:820px){
   .hero{grid-template-columns:1fr;padding-top:36px}
   .wrap{padding:0 12px}
-  .mast{flex-wrap:wrap;padding:10px 0;gap:8px}
+  .mast{flex-wrap:wrap;padding:8px 0 10px;gap:2px 10px}
+  nav{
+    gap:0;width:100%;order:3;flex-wrap:nowrap;
+    border:1px solid var(--line);border-radius:10px;padding:3px;
+    background:var(--card);
+  }
+  nav a,nav .ghost{
+    flex:1 1 0;text-align:center;padding:8px 4px;font-size:13px;
+    border:none;border-radius:7px;min-width:0;
+  }
+  nav .ghost{font-weight:500}
+  nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
   .controls{gap:8px}
   .controls .go{padding:10px 18px;font-size:14px}
   .bench{grid-template-columns:1fr}
@@ -347,8 +359,6 @@ body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:v
       <a href="./index.html" aria-current="page">Workbench</a>
       <a href="./settings.html">Settings</a>
       <a href="https://github.com/truepushkar/humanize-text" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-    <nav style="margin-left:auto">
       <button class="ghost" id="themeBtn" type="button" aria-label="Toggle dark theme" title="Toggle dark theme">Dark</button>
     </nav>
     <div class="status" id="hdrStatus"><span class="dot" id="hdrDot"></span><span id="hdrTxt">not configured</span></div>
