@@ -6,7 +6,7 @@ scrambled — right in your browser. No server, no backend, no install: it's thr
 static files you can host anywhere.
 
 **Built by [Pushkar Singh (truepushkar)](https://github.com/truepushkar) ·
-Repository: <https://github.com/truepushkar/ai_humanizer>**
+Repository: <https://github.com/truepushkar/humanize-text>**
 
 ## How it works
 
