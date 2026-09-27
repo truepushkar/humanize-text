@@ -1,0 +1,947 @@
+- generic [active] [ref=e1]:
+  - region [ref=e2]:
+    - generic [ref=e3]:
+      - tabpanel "Consent" [ref=e8]:
+        - generic [ref=e10]:
+          - heading "This website uses cookies" [level=2] [ref=e11]
+          - generic [ref=e12]: We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.
+        - generic [ref=e13]:
+          - group "Consent Selection" [ref=e19]:
+            - generic [ref=e21]:
+              - generic [ref=e22]:
+                - strong [ref=e24]: Necessary
+                - generic [ref=e25]:
+                  - checkbox "Necessary" [checked] [disabled]
+              - generic [ref=e26]:
+                - strong [ref=e28] [cursor=pointer]: Preferences
+                - switch "Preferences" [ref=e30] [cursor=pointer]
+              - generic [ref=e31]:
+                - strong [ref=e33] [cursor=pointer]: Statistics
+                - switch "Statistics" [ref=e35] [cursor=pointer]
+              - generic [ref=e36]:
+                - strong [ref=e38] [cursor=pointer]: Marketing
+                - switch "Marketing" [ref=e40] [cursor=pointer]
+          - link "Show details" [ref=e42] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e46]:
+        - button "Allow all" [ref=e47] [cursor=pointer]
+        - button "Deny" [ref=e48] [cursor=pointer]
+      - button "Close banner" [ref=e49] [cursor=pointer]
+  - generic [ref=e52]:
+    - generic [ref=e54]:
+      - generic [ref=e55]: "Back to school: Annual plans from $9 a month through September 30."
+      - link "See plans" [ref=e59] [cursor=pointer]:
+        - /url: /pricing
+    - generic [ref=e60]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - link [ref=e65] [cursor=pointer]:
+            - /url: /
+            - img "Pangram Logo" [ref=e66]
+          - generic [ref=e67]:
+            - navigation "Main" [ref=e68]:
+              - list [ref=e70]:
+                - listitem [ref=e71]:
+                  - button "Products" [ref=e72] [cursor=pointer]
+                - listitem [ref=e75]:
+                  - button "Solutions" [ref=e76] [cursor=pointer]
+                - listitem [ref=e79]:
+                  - button "Company" [ref=e80] [cursor=pointer]
+                - listitem [ref=e83]:
+                  - button "Resources" [ref=e84] [cursor=pointer]
+            - link "Pricing" [ref=e87] [cursor=pointer]:
+              - /url: /pricing
+            - link "Contact Sales" [ref=e88] [cursor=pointer]:
+              - /url: /enterprise
+        - generic [ref=e89]:
+          - button "Change language" [ref=e90] [cursor=pointer]
+          - generic [ref=e93]:
+            - link [ref=e94] [cursor=pointer]:
+              - /url: /login
+              - button "Login" [ref=e95]
+            - link [ref=e96] [cursor=pointer]:
+              - /url: /dashboard
+              - button "Try It for Free" [ref=e97]
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - link "NEW Try our Gmail integration" [ref=e104] [cursor=pointer]:
+                - /url: https://www.pangram.com/solutions/gmail
+                - generic [ref=e105]: NEW
+                - paragraph [ref=e106]: Try our Gmail integration
+              - heading "An AI detector that actually works." [level=1] [ref=e110]
+              - paragraph [ref=e111]: Detect AI-generated content with remarkable accuracy. Trusted by universities, schools, and enterprises worldwide.
+              - generic [ref=e113]:
+                - link [ref=e114] [cursor=pointer]:
+                  - /url: /dashboard
+                  - button [ref=e115]
+                - link [ref=e124] [cursor=pointer]:
+                  - /url: /enterprise
+                  - button "Partner With Us" [ref=e125]
+              - generic [ref=e126]:
+                - link [ref=e128] [cursor=pointer]:
+                  - /url: https://arxiv.org/abs/2501.15654
+                  - img "University of Maryland" [ref=e129]
+                - paragraph [ref=e131]:
+                  - text: Proven the most reliable and accurate AI detector on the market by
+                  - link "third party researchers" [ref=e132] [cursor=pointer]:
+                    - /url: /blog/third-party-pangram-evals
+                  - text: ", including the University of Maryland and the University of Chicago."
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - button "Text Detection" [pressed] [ref=e141] [cursor=pointer]
+                - button [ref=e142] [cursor=pointer]:
+                  - text: Image Detection
+                  - generic [ref=e143]: NEW
+              - generic [ref=e144]:
+                - generic [ref=e145]: Detects AI Assistance
+                - generic [ref=e151]: Free Credits
+                - generic [ref=e156]: 3rd-Party Verified
+              - generic [ref=e161]:
+                - generic [ref=e162]:
+                  - textbox "Paste your text or drag and drop it here" [ref=e165]
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: "Try an example:"
+                    - button "Human" [ref=e168] [cursor=pointer]
+                    - button "ChatGPT" [ref=e169] [cursor=pointer]
+                    - button "AI + Human" [ref=e170] [cursor=pointer]
+                - generic [ref=e172]:
+                  - button "Upload" [ref=e173] [cursor=pointer]
+                  - button "Check for AI" [ref=e178] [cursor=pointer]
+          - generic [ref=e182]:
+            - generic [ref=e183]: Trusted byGlobal Brands
+            - generic [ref=e187]:
+              - img "Substack" [ref=e188]
+              - img "Quora" [ref=e189]
+              - img "Newsguard" [ref=e190]
+              - img "Featured" [ref=e191]
+              - img "Haro" [ref=e192]
+              - img "Qwoted" [ref=e193]
+              - img "Vibegrade" [ref=e194]
+              - img "WHE" [ref=e195]
+              - img "WikiEdu" [ref=e196]
+              - img "Inspera" [ref=e197]
+              - img "Substack" [ref=e198]
+              - img "Quora" [ref=e199]
+              - img "Newsguard" [ref=e200]
+              - img "Featured" [ref=e201]
+              - img "Haro" [ref=e202]
+              - img "Qwoted" [ref=e203]
+              - img "Vibegrade" [ref=e204]
+              - img "WHE" [ref=e205]
+              - img "WikiEdu" [ref=e206]
+              - img "Inspera" [ref=e207]
+          - generic [ref=e209]:
+            - generic [ref=e210]:
+              - heading "What is an AI detector and should you use one?" [level=2] [ref=e212]
+              - link [ref=e214] [cursor=pointer]:
+                - /url: /dashboard
+                - button [ref=e215]
+            - generic [ref=e224]:
+              - generic [ref=e226]:
+                - generic [ref=e227]:
+                  - generic [ref=e228] [cursor=pointer]:
+                    - generic [ref=e229]: AI writing has tells
+                    - generic [ref=e236]: "01"
+                  - img "highly-ai" [ref=e238]
+                - generic [ref=e239]:
+                  - generic [ref=e243]:
+                    - paragraph [ref=e244]: "01"
+                    - generic [ref=e245]: AI writing has tells
+                    - paragraph [ref=e246]: AI writing contains structural, stylistic, and semantic patterns that can all be detected by a trained eye or sufficiently sophisticated detection software. AI detection is not magic. It can actually work.
+                  - button [ref=e248] [cursor=pointer]
+              - generic [ref=e258]:
+                - generic [ref=e260] [cursor=pointer]:
+                  - generic [ref=e261]: Pangram detects them
+                  - generic [ref=e268]: "02"
+                - generic [ref=e270]:
+                  - generic [ref=e274]:
+                    - paragraph [ref=e275]: "02"
+                    - generic [ref=e276]: Pangram detects them
+                    - paragraph [ref=e277]:
+                      - text: Pangram's AI detector uses natural language processing and a massive data set of human and AI writing to analyze patterns in AI generated text created by popular models like ChatGPT, Gemini, Grok, Llama and Claude.Pangram's accuracy leads the industry and has been
+                      - link "verified by researchers" [ref=e278] [cursor=pointer]:
+                        - /url: /blog/third-party-pangram-evals
+                      - text: at the University of Chicago and University of Maryland.
+                  - button [ref=e280] [cursor=pointer]
+              - generic [ref=e290]:
+                - generic [ref=e292] [cursor=pointer]:
+                  - generic [ref=e293]: Content transparency is critical
+                  - generic [ref=e300]: "03"
+                - generic [ref=e302]:
+                  - generic [ref=e306]:
+                    - paragraph [ref=e307]: "03"
+                    - generic [ref=e308]: Content transparency is critical
+                    - paragraph [ref=e309]: In an era where AI-generated content is increasingly prevalent in academia, media, and business, the ability to distinguish between human and machine-authored text is critical. In education, it creates trust between students and teachers. It's important in journalism where integrity is essential. AI-generated text isn't inherently bad. However, society can benefit from being able to distinguish between AI and human text.
+                  - button [ref=e311] [cursor=pointer]
+        - generic [ref=e321]:
+          - generic [ref=e322]:
+            - generic [ref=e323]:
+              - paragraph [ref=e327]: Always up to date
+              - heading "Does Pangram detect the latest AI models?" [level=2] [ref=e328]: Does Pangram detectthe latest AI models?
+            - paragraph [ref=e330]:
+              - text: Yes. Pangram is trained specifically to detect the latest AI models from frontier labs like OpenAI, Anthropic, Google, Meta, DeepSeek, xAI, and more. We benchmark against 26 models (so far) and they are available to see on our
+              - link "model card" [ref=e331] [cursor=pointer]:
+                - /url: /research/model-card/pangram-4
+              - text: . We're accurate on 99.7% of these AI-generated samples. We test broadly on every Pangram release and retest on every major model release.
+          - list [ref=e332]:
+            - listitem [ref=e333]:
+              - link "Anthropic Claude Opus 5 99.8% accuracy Tested Jul 2026" [ref=e335] [cursor=pointer]:
+                - /url: /blog/can-pangram-detect-claude-opus-5
+                - generic [ref=e336]: Anthropic
+                - heading "Claude Opus 5" [level=3] [ref=e340]
+                - generic [ref=e341]:
+                  - paragraph [ref=e342]: 99.8% accuracy
+                  - paragraph [ref=e343]: Tested Jul 2026
+            - listitem [ref=e346]:
+              - link "OpenAI GPT 5.6 99.6% accuracy Tested Jul 2026" [ref=e348] [cursor=pointer]:
+                - /url: /blog/can-pangram-detect-gpt-5-6
+                - generic [ref=e349]: OpenAI
+                - heading "GPT 5.6" [level=3] [ref=e353]
+                - generic [ref=e354]:
+                  - paragraph [ref=e355]: 99.6% accuracy
+                  - paragraph [ref=e356]: Tested Jul 2026
+            - listitem [ref=e359]:
+              - link "Google Gemini 3 99.5% accuracy Tested Nov 2025" [ref=e361] [cursor=pointer]:
+                - /url: /blog/does-pangram-detect-gemini-3
+                - generic [ref=e362]: Google
+                - heading "Gemini 3" [level=3] [ref=e366]
+                - generic [ref=e367]:
+                  - paragraph [ref=e368]: 99.5% accuracy
+                  - paragraph [ref=e369]: Tested Nov 2025
+            - listitem [ref=e372]:
+              - link "xAI Grok 4.3 99.4% accuracy Benchmarked Jul 2026" [ref=e374] [cursor=pointer]:
+                - /url: /research/model-card/pangram-4
+                - generic [ref=e375]: xAI
+                - heading "Grok 4.3" [level=3] [ref=e379]
+                - generic [ref=e380]:
+                  - paragraph [ref=e381]: 99.4% accuracy
+                  - paragraph [ref=e382]: Benchmarked Jul 2026
+          - generic [ref=e385]:
+            - generic [ref=e386]:
+              - paragraph [ref=e387]: Also benchmarked
+              - link "See the full benchmark" [ref=e388] [cursor=pointer]:
+                - /url: /research/model-card/pangram-4
+            - list [ref=e391]:
+              - listitem [ref=e392]:
+                - generic [ref=e393]: Claude Sonnet 5
+                - generic [ref=e394]: 99.9%
+              - listitem [ref=e395]:
+                - generic [ref=e396]: Claude Fable 5
+                - generic [ref=e397]: 99.7%
+              - listitem [ref=e398]:
+                - generic [ref=e399]: GPT-5.4
+                - generic [ref=e400]: 99.7%
+              - listitem [ref=e401]:
+                - generic [ref=e402]: GPT-OSS 120B
+                - generic [ref=e403]: 99.8%
+              - listitem [ref=e404]:
+                - generic [ref=e405]: DeepSeek V4
+                - generic [ref=e406]: 99.6%
+              - listitem [ref=e407]:
+                - generic [ref=e408]: Llama 3.3
+                - generic [ref=e409]: 99.5%
+              - listitem [ref=e410]:
+                - generic [ref=e411]: Mistral Medium 3.5
+                - generic [ref=e412]: 99.6%
+              - listitem [ref=e413]:
+                - generic [ref=e414]: Kimi K2.6
+                - generic [ref=e415]: 99.6%
+              - listitem [ref=e416]:
+                - generic [ref=e417]: Qwen 3.7 Max
+                - generic [ref=e418]: 99.7%
+              - listitem [ref=e419]:
+                - generic [ref=e420]: Gemma 4
+                - generic [ref=e421]: 99.6%
+              - listitem [ref=e422]:
+                - generic [ref=e423]: Nemotron 3 Ultra
+                - generic [ref=e424]: 99.7%
+              - listitem [ref=e425]:
+                - generic [ref=e426]: GLM 5.2
+                - generic [ref=e427]: 99.5%
+        - generic [ref=e429]:
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - paragraph [ref=e435]: Our product
+              - heading "Detect AI and plagiarism" [level=2] [ref=e436]: Detect AIand plagiarism
+            - paragraph [ref=e438]:
+              - text: Pangram combines cutting-edge AI and comprehensive plagiarism detection to give you the complete picture of text authenticity and get the information you need, all in one place. Pangram also detects
+              - link "AI-generated images" [ref=e439] [cursor=pointer]:
+                - /url: /image-detector
+              - text: .
+          - generic [ref=e440]:
+            - generic [ref=e441]:
+              - img "AI Segment Analysis" [ref=e443]
+              - generic [ref=e444]:
+                - heading "AI Segment Analysis" [level=3] [ref=e445]
+                - paragraph [ref=e446]: Pangram won't just tell you how confident it is that the document is AI, but also how much of it is.
+            - generic [ref=e447]:
+              - img "AI Assistance" [ref=e449]
+              - generic [ref=e450]:
+                - heading "AI Assistance" [level=3] [ref=e451]
+                - paragraph [ref=e452]: Pangram will highlight segments that have been edited by AI rather than fully AI-generated.
+            - generic [ref=e454]:
+              - img "Plagiarism Checker" [ref=e456]
+              - generic [ref=e457]:
+                - heading "Plagiarism Checker" [level=3] [ref=e458]
+                - paragraph [ref=e459]: Check for plagiarism and AI all at once. Perform an AI plagiarism check with one click.
+        - generic [ref=e461]:
+          - generic [ref=e462]:
+            - generic [ref=e463]:
+              - paragraph [ref=e467]: Features
+              - heading "How is Pangram's AI detector different?" [level=2] [ref=e468]: How is Pangram'sAI detector different?
+            - paragraph [ref=e470]: There are many AI detectors available, but Pangram is different. It actually works. We also provide advanced features backed by peer-reviewed research that allow users to understand the origin of a piece of writing.
+          - generic [ref=e471]:
+            - generic [ref=e474]:
+              - heading "Years of research" [level=3] [ref=e478]
+              - paragraph [ref=e479]: Uses proprietary technology with years of research and development behind it, not an open source model or commercial LLMs covered with branding.
+            - generic [ref=e482]:
+              - heading "Trained on diverse data sets" [level=3] [ref=e486]
+              - paragraph [ref=e487]: Pangram relies on diverse datasets, hard negative mining, and active learning to achieve industry-leading FPRs rather than perplexity and burstiness, which often fail in practice.
+            - generic [ref=e490]:
+              - heading "Detects all LLMs" [level=3] [ref=e494]
+              - paragraph [ref=e495]: Pangram can detect content from all major language models including ChatGPT, Claude, Gemini, Llama and more, making it a comprehensive solution for AI detection.
+          - generic [ref=e496]:
+            - generic [ref=e499]:
+              - heading "Supports 20+ languages" [level=3] [ref=e503]
+              - paragraph [ref=e504]: Our AI detection works across more than 20 languages, making it a truly global, multilingual solution for institutions and businesses worldwide.
+            - generic [ref=e507]:
+              - heading "Out-performed trained humans" [level=3] [ref=e511]
+              - paragraph [ref=e512]: Independent studies have shown that Pangram's AI detection outperforms trained human readers in identifying AI-generated content.
+            - generic [ref=e517]:
+              - heading "Detects humanized text" [level=3] [ref=e521]
+              - paragraph [ref=e522]: Pangram can detect AI-generated text even after it has been "humanized," or processed by tools that attempt to evade AI detection, ensuring reliable detection.
+            - generic [ref=e527]:
+              - heading "Verified accuracy" [level=3] [ref=e531]
+              - paragraph [ref=e532]:
+                - text: Our accuracy and reliability have been
+                - link "independently verified" [ref=e533] [cursor=pointer]:
+                  - /url: /blog/third-party-pangram-evals
+                - text: by third-party researchers and educational institutions.
+        - generic [ref=e536]:
+          - generic [ref=e538]:
+            - paragraph [ref=e542]: Who we are
+            - heading "About Pangram" [level=2] [ref=e543]
+            - paragraph [ref=e545]:
+              - text: At Pangram, our mission is to rebuild trust amidst the increase in generative AI content. Founded in Brooklyn, NY, in 2023 by AI researchers from Tesla and Google, we continue to contribute to the research community to increase transparency. If you're interested,
+              - link "read more" [ref=e546] [cursor=pointer]:
+                - /url: /blog/how-does-ai-detection-work
+              - text: about our contributions and collaborations.
+          - generic [ref=e548]:
+            - img "Still from the Pangram video" [ref=e549]
+            - button "Play the Pangram video" [ref=e550] [cursor=pointer]
+        - generic [ref=e554]:
+          - generic [ref=e555]:
+            - paragraph [ref=e559]: How it works
+            - heading "How Pangram's AI detector works" [level=2] [ref=e560]
+          - generic [ref=e561]:
+            - generic [ref=e563]:
+              - img "Input your text" [ref=e564]
+              - img "Scan for AI content" [ref=e565]
+              - img "View results" [ref=e566]
+              - img "Access past records" [ref=e567]
+            - generic [ref=e568]:
+              - generic [ref=e569]:
+                - generic [ref=e570]:
+                  - button [ref=e571] [cursor=pointer]:
+                    - generic [ref=e572]:
+                      - paragraph [ref=e573]: "01"
+                      - heading "Input your text" [level=3] [ref=e575]
+                  - paragraph [ref=e581]: Copy and paste your text into the field or upload files. Pangram supports PDF, DOCX, RTF files and up to 100 files at a time.
+                - generic [ref=e582]:
+                  - button [ref=e583] [cursor=pointer]:
+                    - generic [ref=e584]:
+                      - paragraph [ref=e585]: "02"
+                      - heading "Scan for AI content" [level=3] [ref=e587]
+                  - paragraph [ref=e591]: Pangram analyzes your text using advanced AI detection algorithms to identify AI-generated content with high accuracy.
+                - generic [ref=e592]:
+                  - button [ref=e593] [cursor=pointer]:
+                    - generic [ref=e594]:
+                      - paragraph [ref=e595]: "03"
+                      - heading "View results" [level=3] [ref=e597]
+                  - paragraph [ref=e601]: Review detailed results showing AI detection scores, highlighted sections, and comprehensive analysis of your text.
+                - generic [ref=e602]:
+                  - button [ref=e603] [cursor=pointer]:
+                    - generic [ref=e604]:
+                      - paragraph [ref=e605]: "04"
+                      - heading "Access past records" [level=3] [ref=e607]
+                  - paragraph [ref=e611]: Access your complete history of scans, download reports, and manage your past detection records all in one place.
+              - generic [ref=e614]:
+                - generic [ref=e615]:
+                  - link [ref=e616] [cursor=pointer]:
+                    - /url: https://addons.mozilla.org/en-US/firefox/addon/pangram-ai-detection/
+                    - img "Firefox" [ref=e617]
+                  - link [ref=e618] [cursor=pointer]:
+                    - /url: https://chromewebstore.google.com/detail/pangram-labs-ai-detection/eakpippijmmohmdlpgcjnipolcgciaga
+                    - img "Google Chrome" [ref=e619]
+                  - link [ref=e620] [cursor=pointer]:
+                    - /url: https://chromewebstore.google.com/detail/pangram-labs-ai-detection/eakpippijmmohmdlpgcjnipolcgciaga
+                    - img "Google Docs" [ref=e621]
+                  - link [ref=e622] [cursor=pointer]:
+                    - /url: /enterprise
+                    - img "Google Classroom" [ref=e623]
+                  - link [ref=e624] [cursor=pointer]:
+                    - /url: /enterprise
+                    - img "Canvas" [ref=e625]
+                - paragraph [ref=e626]: Pangram is also integrated into Chrome browser, Google Docs, and many learning management systems like Google Classroom and Canvas.
+        - generic [ref=e628]:
+          - generic [ref=e629]:
+            - paragraph [ref=e633]: Solutions
+            - heading "Protect authenticity in every industry" [level=2] [ref=e634]: Protect authenticityin every industry
+            - generic [ref=e635]:
+              - paragraph [ref=e636]: Pangram provides AI detection solutions for educators, publishers, law firms, HR departments, foundations, and more.
+              - link [ref=e637] [cursor=pointer]:
+                - /url: /contact-us
+                - button [ref=e638]
+          - generic [ref=e647]:
+            - button "AI Detector for Education" [ref=e648] [cursor=pointer]
+            - button "AI Detector for Enterprise" [ref=e650] [cursor=pointer]
+          - generic [ref=e652]:
+            - link [ref=e653] [cursor=pointer]:
+              - /url: /use-cases/teachers
+              - img "For teachers" [ref=e655]
+              - generic [ref=e656]:
+                - heading "For teachers" [level=3] [ref=e657]
+                - paragraph [ref=e658]: Pangram's transparency tool reliably detects AI content and checks for plagiarism to help teachers understand the origin of written text and maintain integrity and fairness in assessment.
+            - link [ref=e659] [cursor=pointer]:
+              - /url: /use-cases/universities
+              - img "For higher ed" [ref=e661]
+              - generic [ref=e662]:
+                - heading "For higher ed" [level=3] [ref=e663]
+                - paragraph [ref=e664]: Pangram's LMS integrations allow universities to create informed AI policies. Our AI detector's tool accuracy gives them the peace of mind to implement those policies at scale.
+        - generic [ref=e666]:
+          - generic [ref=e667]:
+            - paragraph [ref=e671]: Features
+            - heading "AI detection solutions for enterprise and schools" [level=2] [ref=e672]: AI detection solutionsfor enterprise and schools
+          - generic [ref=e673]:
+            - generic [ref=e675]:
+              - generic [ref=e676]:
+                - generic [ref=e677]:
+                  - paragraph [ref=e678]: "01"
+                  - paragraph [ref=e680]: LMS Integration
+                  - paragraph [ref=e681]: Our AI detector works with the most popular LMS systems making it easy to use across multiple platforms like Canvas, Moodle, Google Classroom, Brightspace, and more.
+                - link [ref=e682] [cursor=pointer]:
+                  - /url: http://pangram.com/solutions/integrations
+                  - paragraph [ref=e683]: Learn More →
+              - img "LMS Integration" [ref=e686]
+            - generic [ref=e689]:
+              - generic [ref=e690]:
+                - generic [ref=e691]:
+                  - paragraph [ref=e692]: "03"
+                  - generic [ref=e693]:
+                    - paragraph [ref=e694]: API
+                    - paragraph [ref=e695]: Solution
+                - paragraph [ref=e696]: Our API is perfect for high-volume projects with different pricing options to suit your needs. We have custom API solutions for educators, developers, and enterprise.
+              - link [ref=e697] [cursor=pointer]:
+                - /url: https://pangram.com/solutions/api
+                - paragraph [ref=e698]: Learn More →
+            - generic [ref=e700]:
+              - generic [ref=e701]:
+                - generic [ref=e702]:
+                  - paragraph [ref=e703]: "02"
+                  - generic [ref=e704]:
+                    - paragraph [ref=e705]: Google Doc &
+                    - paragraph [ref=e706]: Browser Extension
+                  - paragraph [ref=e707]: Our browser extension is a quick and convenient way to use our AI detection tool while browsing the web or within web-based applications such as Google Docs.
+                - link [ref=e708] [cursor=pointer]:
+                  - /url: https://chromewebstore.google.com/detail/pangram-labs-ai-detection/eakpippijmmohmdlpgcjnipolcgciaga
+                  - paragraph [ref=e709]: Download Now →
+              - img "Chrome Extension" [ref=e712]
+            - img "Right-click to check for AI" [ref=e714]
+        - generic [ref=e716]:
+          - generic [ref=e717]:
+            - paragraph [ref=e721]: See what our users say
+            - heading "Users love Pangram" [level=2] [ref=e722]
+          - generic [ref=e723]:
+            - generic [ref=e724]:
+              - generic [ref=e726]:
+                - img "Alex Imas, Professor" [ref=e727]
+                - paragraph [ref=e729]: Alex Imas, Professor
+              - generic [ref=e730]:
+                - img "Quote" [ref=e732]
+                - paragraph [ref=e733]: Pangram is pretty incredible. Much better than other AI detection tools (by a country mile). I've used it and tested it thoroughly and seen minimal false positives and negatives.
+                - paragraph [ref=e734]: University of Chicago Booth School of Business
+            - generic [ref=e736]:
+              - img "Quote" [ref=e738]
+              - paragraph [ref=e739]: For me, Pangram Labs has become the most student-centered option I’ve found for my courses. Students see the same report I see, directly in our Canvas shell, and Pangram’s documented false-positive rate (1 in 10,000) allows me to comfortably treat a flag as an invitation to talk, never as a presumption of guilt.
+              - paragraph [ref=e740]: — Susan Ray, Associate Professor Of English, Delaware County Community College
+            - generic [ref=e742]:
+              - img "Quote" [ref=e744]
+              - paragraph [ref=e745]: There's a lot of overhyped, me-too products flooding the AI space, but this detector is almost supernaturally good. I have yet to experience a single false positive or false negative.
+              - paragraph [ref=e746]: Cloud Architect
+              - paragraph [ref=e747]: — Ryan Nicolace, Cloud Architect
+            - generic [ref=e748]:
+              - generic [ref=e750]:
+                - img "Jenna Russell, PhD" [ref=e751]
+                - paragraph [ref=e753]: Jenna Russell, PhD
+              - generic [ref=e754]:
+                - img "Quote" [ref=e756]
+                - paragraph [ref=e757]: We compare human experts with five AI detectors, including Pangram and GPTZero. Among automatic detectors, Pangram significantly outperforms the rest.
+                - img "University of Maryland" [ref=e759]
+            - generic [ref=e760]:
+              - generic [ref=e762]:
+                - img "Tuhin Chakrabarty, Professor" [ref=e763]
+                - paragraph [ref=e765]: Tuhin Chakrabarty, Professor
+              - generic [ref=e766]:
+                - img "Quote" [ref=e768]
+                - paragraph [ref=e769]: Pangram is really one of the best AI detectors we have, and y'all should use it.
+                - img "Stony Brook University" [ref=e771]
+            - generic [ref=e773]:
+              - img "Quote" [ref=e775]
+              - paragraph [ref=e776]: Based on our experiences in the fall term, we have high confidence in Pangram as a detector of AI content in Wikipedia articles.
+              - paragraph [ref=e777]: — LiAnna Davis, Chief Programs Officer and Deputy Director at Wiki Education
+            - generic [ref=e779]:
+              - img "Quote" [ref=e781]
+              - paragraph [ref=e782]: Pangram noticeably outperforms other LLM content detection services I've tried. It reduces our moderation workload enough to pay for itself many times over. If you run a platform with user-generated content, you should probably be using it.
+              - paragraph [ref=e783]: — Robert Mushkatblat, CTO LessWrong
+            - generic [ref=e784]:
+              - generic [ref=e786]:
+                - img "Dan Simon, CEO of Qwoted" [ref=e787]
+                - paragraph [ref=e789]: Dan Simon, CEO of Qwoted
+              - generic [ref=e790]:
+                - img "Quote" [ref=e792]
+                - paragraph [ref=e793]: The future of journalism depends on trust. This is why we're delighted to be partnering with Pangram, which has set the gold standard for Al detection and attribution
+                - img "Qwoted" [ref=e795]
+          - link "Read all reviews" [ref=e797] [cursor=pointer]:
+            - /url: /testimonials-reviews
+        - generic [ref=e801]:
+          - generic [ref=e802]:
+            - paragraph [ref=e806]: Our model
+            - heading "Pangram's AI detection is highly accurate" [level=2] [ref=e807]
+            - paragraph [ref=e808]:
+              - text: How does Pangram achieve these results?
+              - link "Learn more." [ref=e809] [cursor=pointer]:
+                - /url: /research/how-it-works
+          - generic [ref=e810]:
+            - generic [ref=e812]:
+              - button [ref=e813] [cursor=pointer]:
+                - generic [ref=e814]:
+                  - paragraph [ref=e815]: "01"
+                  - heading "Initial training process for AI detection" [level=3] [ref=e816]
+              - button [ref=e820] [cursor=pointer]:
+                - generic [ref=e821]:
+                  - paragraph [ref=e822]: "02"
+                  - heading "Continued improvement through iteration" [level=3] [ref=e823]
+              - button [ref=e824] [cursor=pointer]:
+                - generic [ref=e825]:
+                  - paragraph [ref=e826]: "03"
+                  - heading "Consistent retraining of AI detector models" [level=3] [ref=e827]
+            - generic [ref=e828]:
+              - img "Technical diagram" [ref=e830]
+              - paragraph [ref=e833]: Our classifier uses a traditional language model architecture. It receives input text and tokenizes it. Then, the model turns each token into an embedding, which is a vector of numbers representing the meaning of each token. The input is passed through the neural network, producing an output vector. A classifier head transforms the output vector into a prediction of human, AI, or AI-assisted. We train an initial model on a small but diverse dataset of approximately 1 million documents composed of publicly licensed human-written text. The dataset also includes AI-generated text produced by GPT-5 and other frontier language models. The result of training is a neural network capable of reliably predicting whether text was authored by human or AI.
+        - generic [ref=e835]:
+          - generic [ref=e836]:
+            - paragraph [ref=e840]: Third Party Evaluation
+            - heading "Why Pangram has the lowest false positive rate" [level=2] [ref=e841]
+            - paragraph [ref=e842]:
+              - text: Based on independent research from the University of Chicago Booth School of Business.
+              - link "Learn more." [ref=e843] [cursor=pointer]:
+                - /url: https://www.chicagobooth.edu/review/do-ai-detectors-work-well-enough-trust#:~:text=The%20researchers%20tested
+          - generic [ref=e844]:
+            - generic [ref=e846]:
+              - button [ref=e847] [cursor=pointer]:
+                - generic [ref=e848]:
+                  - paragraph [ref=e849]: "01"
+                  - heading "Product review" [level=3] [ref=e850]
+              - button [ref=e854] [cursor=pointer]:
+                - generic [ref=e855]:
+                  - paragraph [ref=e856]: "02"
+                  - heading "Blog post" [level=3] [ref=e857]
+              - button [ref=e858] [cursor=pointer]:
+                - generic [ref=e859]:
+                  - paragraph [ref=e860]: "03"
+                  - heading "News article" [level=3] [ref=e861]
+              - button [ref=e862] [cursor=pointer]:
+                - generic [ref=e863]:
+                  - paragraph [ref=e864]: "04"
+                  - heading "Novel excerpt" [level=3] [ref=e865]
+              - button [ref=e866] [cursor=pointer]:
+                - generic [ref=e867]:
+                  - paragraph [ref=e868]: "05"
+                  - heading "Restaurant review" [level=3] [ref=e869]
+              - button [ref=e870] [cursor=pointer]:
+                - generic [ref=e871]:
+                  - paragraph [ref=e872]: "06"
+                  - heading "Résumé" [level=3] [ref=e873]
+            - generic [ref=e877]:
+              - generic [ref=e878]:
+                - paragraph [ref=e879]: Pangram
+                - paragraph [ref=e882]: 0.5%
+              - generic [ref=e883]:
+                - paragraph [ref=e884]: GPTZero
+                - paragraph [ref=e887]: 2.4%
+              - generic [ref=e888]:
+                - paragraph [ref=e889]: Originality.ai
+                - paragraph [ref=e892]: 1.7%
+              - generic [ref=e893]:
+                - paragraph [ref=e894]: RoBERTa
+                - paragraph [ref=e897]: 30.6%
+              - paragraph [ref=e898]: False positive rate — Product review
+        - generic [ref=e901]:
+          - generic [ref=e902]:
+            - paragraph [ref=e906]: FAQs
+            - heading "AI Detection FAQs" [level=2] [ref=e907]
+            - paragraph [ref=e908]: Looking for answers? Explore common questionsand get the information you need, all in one place.
+            - link [ref=e909] [cursor=pointer]:
+              - /url: /contact-us
+              - button [ref=e910]
+          - generic [ref=e919]:
+            - generic [ref=e920]:
+              - button [ref=e921] [cursor=pointer]:
+                - paragraph [ref=e922]: "001"
+                - heading "What is AI content detection?" [level=3] [ref=e924]
+              - generic [ref=e929]: AI content detection, like Pangram's AI checker tool, analyzes text for traces of AI writing. AI detectors return a prediction and a score based on the likelihood that the text is AI-generated.
+            - generic [ref=e932]:
+              - button [ref=e933] [cursor=pointer]:
+                - paragraph [ref=e934]: "002"
+                - heading "How does Pangram work?" [level=3] [ref=e936]
+              - generic [ref=e941]:
+                - text: Pangram's AI detection tool
+                - link "analyzes text" [ref=e942] [cursor=pointer]:
+                  - /url: /research/how-it-works
+                - text: for traces of AI writing. If our system finds evidence that the content contains AI writing, it will return this observation along with how much of the document we believe is AI-generated or AI assisted. Otherwise, we consider the result human written.
+            - generic [ref=e943]:
+              - button [ref=e944] [cursor=pointer]:
+                - paragraph [ref=e945]: "003"
+                - heading "How accurate is Pangram?" [level=3] [ref=e947]
+              - generic [ref=e952]:
+                - text: Pangram is over 99% accurate and has been
+                - link "third-party verified" [ref=e953] [cursor=pointer]:
+                  - /url: /blog/the-latest-in-ai-detection-research
+                - text: by researchers at the University of Chicago and The University of Maryland.
+            - generic [ref=e954]:
+              - button [ref=e955] [cursor=pointer]:
+                - paragraph [ref=e956]: "004"
+                - heading "What is Pangram's false positive rate?" [level=3] [ref=e958]
+              - generic: Pangram's false positive rate (the rate at which human documents are incorrectly flagged as AI) is currently 1 in 10,000. This number is calculated on an aggregate of public datasets containing tens of millions of written documents.
+            - generic [ref=e964]:
+              - button [ref=e965] [cursor=pointer]:
+                - paragraph [ref=e966]: "005"
+                - heading "Is Pangram's AI detector free?" [level=3] [ref=e968]
+              - generic [ref=e973]:
+                - text: We offer twenty free checks a day after signing up for our free plan, including AI assistance detection. Additional credits and features like plagiarism detection are available with a subscription. For more information, check out our
+                - link "pricing" [ref=e974] [cursor=pointer]:
+                  - /url: /pricing
+                - text: plans.
+            - generic [ref=e975]:
+              - button [ref=e976] [cursor=pointer]:
+                - paragraph [ref=e977]: "006"
+                - heading "Is my data safe if I check text with Pangram?" [level=3] [ref=e979]
+              - generic: Yes, all user data is encrypted and stored securely on our servers to be displayed in your history. We never share or sell your data to any third parties.
+            - generic [ref=e985]:
+              - button [ref=e986] [cursor=pointer]:
+                - paragraph [ref=e987]: "007"
+                - heading "What languages does Pangram detect AI content in?" [level=3] [ref=e989]
+              - generic [ref=e994]:
+                - text: Pangram's
+                - link "multilingual AI checker" [ref=e995] [cursor=pointer]:
+                  - /url: /solutions/multilingual
+                - text: detects AI writing in English, Arabic, Chinese, Czech, Dutch, French, German, Greek, Hindi, Hungarian, Italian, Japanese, Korean, Persian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Turkish, Ukrainian, Urdu, Vietnamese, and more.
+            - generic [ref=e996]:
+              - button [ref=e997] [cursor=pointer]:
+                - paragraph [ref=e998]: "008"
+                - heading "What AI models does Pangram detect?" [level=3] [ref=e1000]
+              - generic [ref=e1005]:
+                - text: Pangram detects the latest AI models, including OpenAI's GPT-5.6 and ChatGPT, Anthropic's Claude Opus 5 and Claude Sonnet 5, Google Gemini, xAI's Grok, DeepSeek, and Meta's Llama. Pangram is trained specifically to detect models from these frontier labs and more. We benchmark against 26 models (so far) and they are available to see on our
+                - link "model card" [ref=e1006] [cursor=pointer]:
+                  - /url: /research/model-card/pangram-4
+                - text: . We're accurate on 99.7% of these AI-generated samples. We test broadly on every Pangram release and retest on every major model release.
+            - generic [ref=e1007]:
+              - button [ref=e1008] [cursor=pointer]:
+                - paragraph [ref=e1009]: "009"
+                - heading "What signals does Pangram use to detect AI text?" [level=3] [ref=e1011]
+              - generic: Pangram uses writing style, word choice, syntax choice, and grammatical structure to detect AI writing. Our AI writing detector only looks at the content of the text submitted. It does not compare the text to other submissions in a database or on the web like traditional plagiarism checkers, and it does not capture writing process data such as cut-and-paste. Pangram does not access OpenAI's database or analyze a user's browsing history.
+            - generic [ref=e1017]:
+              - button [ref=e1018] [cursor=pointer]:
+                - paragraph [ref=e1019]: "010"
+                - heading "How are schools using Pangram?" [level=3] [ref=e1021]
+              - generic [ref=e1026]:
+                - text: Schools incorporate AI detection tools from Pangram using
+                - link "LMS integrations" [ref=e1027] [cursor=pointer]:
+                  - /url: /solutions/integrations
+                - text: like our Canvas integration or our Google Classroom integration. By bringing Pangram into the classroom, teachers can
+                - link "set boundaries around AI use" [ref=e1028] [cursor=pointer]:
+                  - /url: /blog/useful-ai-policies
+                - text: and ensure students are improving their critical thinking skills through their schoolwork.
+            - generic [ref=e1029]:
+              - button [ref=e1030] [cursor=pointer]:
+                - paragraph [ref=e1031]: "011"
+                - heading "How are universities using Pangram?" [level=3] [ref=e1033]
+              - generic: Professors use Pangram to set boundaries on AI use and ensure that students properly learn the material by using our AI and plagiarism detectors directly in their LMS. Academic integrity departments use Pangram to provide evidence for cases that goes beyond the score - highlighting the most common phrases that LLMs use and comparing submissions to actual AI-generated responses.
+            - generic [ref=e1039]:
+              - button [ref=e1040] [cursor=pointer]:
+                - paragraph [ref=e1041]: "012"
+                - heading "Why do other AI detectors sometimes give false positives?" [level=3] [ref=e1043]
+              - generic [ref=e1048]:
+                - text: Many other AI detectors use metrics like
+                - link "perplexity" [ref=e1049] [cursor=pointer]:
+                  - /url: /blog/why-perplexity-and-burstiness-fail-to-detect-ai
+                - text: to detect AI writing. Perplexity is how unexpected, or surprising, each word in a piece of text is, when looked at from the perspective of a particular language model or LLM. AI text is often low-perplexity, because of how AI models work. Unfortunately, other simple or unsurprising writing, like the Declaration of Independence, come up as a false positive, making perplexity-based detectors unreliable for scenarios like the classroom where false positives are undesirable. Pangram does not use perplexity or other metrics that correlate with AI writing, instead using a comprehensive deep learning approach that discovers patterns over millions of writing samples.
+            - generic [ref=e1050]:
+              - button [ref=e1051] [cursor=pointer]:
+                - paragraph [ref=e1052]: "013"
+                - heading "Why do other AI detectors fail to flag AI writing?" [level=3] [ref=e1054]
+              - generic: Many other AI detectors don't keep up-to-date with the latest AI models. Pangram is constantly collecting writing samples from the latest and most capable AI models to ensure that the software can detect writing from all AI services, even those from unreleased models or AI editing tools.
+            - generic [ref=e1060]:
+              - button [ref=e1061] [cursor=pointer]:
+                - paragraph [ref=e1062]: "014"
+                - heading "Why is Pangram the best AI detector?" [level=3] [ref=e1064]
+              - generic [ref=e1069]:
+                - text: Pangram is built by
+                - link "a team of seasoned machine learning engineers" [ref=e1070] [cursor=pointer]:
+                  - /url: /about-us
+                - text: with extensive experience in AI. Pangram is the most advanced AI detection model and is built on millions of human and AI documents to ensure that it can pick up on even the most subtle nuances in AI writing.
+        - generic [ref=e1073]:
+          - generic [ref=e1074]:
+            - paragraph [ref=e1078]: The Pangram blog
+            - heading "More from our AI experts" [level=2] [ref=e1079]: More from ourAI experts
+            - generic [ref=e1080]:
+              - link [ref=e1081] [cursor=pointer]:
+                - /url: /blog
+                - button [ref=e1082]
+              - generic [ref=e1091]:
+                - button "Previous slide" [ref=e1092] [cursor=pointer]
+                - button "Next slide" [ref=e1095] [cursor=pointer]
+          - region [ref=e1099]:
+            - generic [ref=e1101]:
+              - link "Journalists hate AI-generated PR just like the rest of us Case Studies Journalists hate AI-generated PR just like the rest of us Annamieka Aerts Max Spero Annamieka Aerts and Max Spero Sep 23, 2026" [ref=e1103] [cursor=pointer]:
+                - /url: /blog/featured-case-study
+                - img "Journalists hate AI-generated PR just like the rest of us" [ref=e1105]
+                - generic [ref=e1106]:
+                  - generic [ref=e1107]: Case Studies
+                  - heading "Journalists hate AI-generated PR just like the rest of us" [level=3] [ref=e1109]
+                  - generic [ref=e1111]:
+                    - generic [ref=e1112]:
+                      - generic [ref=e1113]:
+                        - img "Annamieka Aerts" [ref=e1114]
+                        - img "Max Spero" [ref=e1115]
+                      - generic [ref=e1116]: Annamieka Aerts and Max Spero
+                    - generic [ref=e1117]: Sep 23, 2026
+                  - paragraph
+              - link "Can Pangram detect Claude Opus 5.5? Case Studies Can Pangram detect Claude Opus 5.5? Annamieka Aerts Annamieka Aerts Sep 23, 2026 Yes. Pangram detects Claude Opus 5. 5 in 997/1,000 (99. 70%) of our tested examples." [ref=e1119] [cursor=pointer]:
+                - /url: /blog/can-pangram-detect-opus-5-5
+                - img "Can Pangram detect Claude Opus 5.5?" [ref=e1121]
+                - generic [ref=e1122]:
+                  - generic [ref=e1123]: Case Studies
+                  - heading "Can Pangram detect Claude Opus 5.5?" [level=3] [ref=e1125]
+                  - generic [ref=e1127]:
+                    - generic [ref=e1128]:
+                      - img "Annamieka Aerts" [ref=e1130]
+                      - generic [ref=e1131]: Annamieka Aerts
+                    - generic [ref=e1132]: Sep 23, 2026
+                  - paragraph [ref=e1133]: Yes. Pangram detects Claude Opus 5. 5 in 997/1,000 (99. 70%) of our tested examples.
+              - link "All About False Positives in AI Detectors AI Education All About False Positives in AI Detectors Bradley Emi Bradley Emi Sep 15, 2026 A deep dive into how Pangram achieves industry-leading false positive rates in AI detection, with a false positive rate of 1 in 10,000." [ref=e1135] [cursor=pointer]:
+                - /url: /blog/all-about-false-positives-in-ai-detectors
+                - img "All About False Positives in AI Detectors" [ref=e1137]
+                - generic [ref=e1138]:
+                  - generic [ref=e1139]: AI Education
+                  - heading "All About False Positives in AI Detectors" [level=3] [ref=e1141]
+                  - generic [ref=e1143]:
+                    - generic [ref=e1144]:
+                      - img "Bradley Emi" [ref=e1146]
+                      - generic [ref=e1147]: Bradley Emi
+                    - generic [ref=e1148]: Sep 15, 2026
+                  - paragraph [ref=e1149]: A deep dive into how Pangram achieves industry-leading false positive rates in AI detection, with a false positive rate of 1 in 10,000.
+              - link "What is AI watermarking? AI Education What is AI watermarking? Annamieka Aerts Annamieka Aerts Sep 14, 2026 How AI text watermarks like SynthID and Claude’s work, which providers use them, how they can be beaten, and what they mean for AI detection." [ref=e1151] [cursor=pointer]:
+                - /url: /blog/ai-watermarking
+                - img "What is AI watermarking?" [ref=e1153]
+                - generic [ref=e1154]:
+                  - generic [ref=e1155]: AI Education
+                  - heading "What is AI watermarking?" [level=3] [ref=e1157]
+                  - generic [ref=e1159]:
+                    - generic [ref=e1160]:
+                      - img "Annamieka Aerts" [ref=e1162]
+                      - generic [ref=e1163]: Annamieka Aerts
+                    - generic [ref=e1164]: Sep 14, 2026
+                  - paragraph [ref=e1165]: How AI text watermarks like SynthID and Claude’s work, which providers use them, how they can be beaten, and what they mean for AI detection.
+              - link "Pangram's Performance on a Colluding Agent Swarm Case Studies Pangram's Performance on a Colluding Agent Swarm Annamieka Aerts Annamieka Aerts Sep 10, 2026 A brief report on how Pangram 4 performs when given a collection of items written by AI agents using an obscure web forum to help each other cheat on their assigned task." [ref=e1167] [cursor=pointer]:
+                - /url: /blog/pangram-on-colluding-agent-swarm
+                - img "Pangram's Performance on a Colluding Agent Swarm" [ref=e1169]
+                - generic [ref=e1170]:
+                  - generic [ref=e1171]: Case Studies
+                  - heading "Pangram's Performance on a Colluding Agent Swarm" [level=3] [ref=e1173]
+                  - generic [ref=e1175]:
+                    - generic [ref=e1176]:
+                      - img "Annamieka Aerts" [ref=e1178]
+                      - generic [ref=e1179]: Annamieka Aerts
+                    - generic [ref=e1180]: Sep 10, 2026
+                  - paragraph [ref=e1181]: A brief report on how Pangram 4 performs when given a collection of items written by AI agents using an obscure web forum to help each other cheat on their assigned task.
+              - link "Does Pangram Detect Fable 5.1? News Does Pangram Detect Fable 5.1? Annamieka Aerts Katherine Thai Annamieka Aerts and Katherine Thai Sep 3, 2026 Can Pangram 4 detect Anthropic's newest model, Fable 5. 1?" [ref=e1183] [cursor=pointer]:
+                - /url: /blog/can-pangram-detect-fable-5-1
+                - img "Does Pangram Detect Fable 5.1?" [ref=e1185]
+                - generic [ref=e1186]:
+                  - generic [ref=e1187]: News
+                  - heading "Does Pangram Detect Fable 5.1?" [level=3] [ref=e1189]
+                  - generic [ref=e1191]:
+                    - generic [ref=e1192]:
+                      - generic [ref=e1193]:
+                        - img "Annamieka Aerts" [ref=e1194]
+                        - img "Katherine Thai" [ref=e1195]
+                      - generic [ref=e1196]: Annamieka Aerts and Katherine Thai
+                    - generic [ref=e1197]: Sep 3, 2026
+                  - paragraph [ref=e1198]: Can Pangram 4 detect Anthropic's newest model, Fable 5. 1?
+              - link "AI Helps Write Nearly 50% of Press Releases Case Studies AI Helps Write Nearly 50% of Press Releases Annamieka Aerts Annamieka Aerts Sep 1, 2026 Pangram scanned 178,672 PR Newswire press releases and found AI-generated text in 34% of them over the past year, climbing to 48% by June 2026." [ref=e1200] [cursor=pointer]:
+                - /url: /blog/ai-press-releases
+                - img "AI Helps Write Nearly 50% of Press Releases" [ref=e1202]
+                - generic [ref=e1203]:
+                  - generic [ref=e1204]: Case Studies
+                  - heading "AI Helps Write Nearly 50% of Press Releases" [level=3] [ref=e1206]
+                  - generic [ref=e1208]:
+                    - generic [ref=e1209]:
+                      - img "Annamieka Aerts" [ref=e1211]
+                      - generic [ref=e1212]: Annamieka Aerts
+                    - generic [ref=e1213]: Sep 1, 2026
+                  - paragraph [ref=e1214]: Pangram scanned 178,672 PR Newswire press releases and found AI-generated text in 34% of them over the past year, climbing to 48% by June 2026.
+              - link "No, LLMs don’t just mimic human text AI Education No, LLMs don’t just mimic human text Bradley Emi Bradley Emi Aug 20, 2026 LLMs are trained on human text, so why can AI detectors still tell the difference? A look at how post-training pushes models like ChatGPT, Claude, and Gemini away from the human writing distribution." [ref=e1216] [cursor=pointer]:
+                - /url: /blog/no-llms-dont-just-mimic-human-text
+                - img "No, LLMs don’t just mimic human text" [ref=e1218]
+                - generic [ref=e1219]:
+                  - generic [ref=e1220]: AI Education
+                  - heading "No, LLMs don’t just mimic human text" [level=3] [ref=e1222]
+                  - generic [ref=e1224]:
+                    - generic [ref=e1225]:
+                      - img "Bradley Emi" [ref=e1227]
+                      - generic [ref=e1228]: Bradley Emi
+                    - generic [ref=e1229]: Aug 20, 2026
+                  - paragraph [ref=e1230]: LLMs are trained on human text, so why can AI detectors still tell the difference? A look at how post-training pushes models like ChatGPT, Claude, and Gemini away from the human writing distribution.
+              - link "Pangram shows 0 false positives on diverse student essays Case Studies Pangram shows 0 false positives on diverse student essays Katherine Thai Annamieka Aerts Katherine Thai and Annamieka Aerts Aug 19, 2026 We evaluated Pangram 4 on 25,996 human-written student essays from the PERSUADE 2. 0 corpus and found zero false positives in every demographic subgroup." [ref=e1232] [cursor=pointer]:
+                - /url: /blog/pangram-performance-diverse-student-essays
+                - img "Pangram shows 0 false positives on diverse student essays" [ref=e1234]
+                - generic [ref=e1235]:
+                  - generic [ref=e1236]: Case Studies
+                  - heading "Pangram shows 0 false positives on diverse student essays" [level=3] [ref=e1238]
+                  - generic [ref=e1240]:
+                    - generic [ref=e1241]:
+                      - generic [ref=e1242]:
+                        - img "Katherine Thai" [ref=e1243]
+                        - img "Annamieka Aerts" [ref=e1244]
+                      - generic [ref=e1245]: Katherine Thai and Annamieka Aerts
+                    - generic [ref=e1246]: Aug 19, 2026
+                  - paragraph [ref=e1247]: We evaluated Pangram 4 on 25,996 human-written student essays from the PERSUADE 2. 0 corpus and found zero false positives in every demographic subgroup.
+        - generic [ref=e1253]:
+          - generic [ref=e1254]:
+            - link [ref=e1256] [cursor=pointer]:
+              - /url: /
+              - img "Pangram Logo" [ref=e1257]
+            - generic [ref=e1258]:
+              - generic [ref=e1259]:
+                - generic [ref=e1260]: Products
+                - generic [ref=e1261]:
+                  - link "AI Detector" [ref=e1262] [cursor=pointer]:
+                    - /url: /
+                  - link "AI Image Detector" [ref=e1263] [cursor=pointer]:
+                    - /url: /image-detector
+                  - link "Browser Extension" [ref=e1264] [cursor=pointer]:
+                    - /url: /solutions/chrome-extension
+                  - link "Gmail" [ref=e1265] [cursor=pointer]:
+                    - /url: /solutions/gmail
+                  - link "Google Docs" [ref=e1266] [cursor=pointer]:
+                    - /url: /solutions/google-docs
+                  - link "API" [ref=e1267] [cursor=pointer]:
+                    - /url: /solutions/api
+                  - link "Integrations" [ref=e1268] [cursor=pointer]:
+                    - /url: /solutions/integrations
+                  - link "Plagiarism Checker" [ref=e1269] [cursor=pointer]:
+                    - /url: /solutions/plagiarism
+                  - link "Multilingual AI Detection" [ref=e1270] [cursor=pointer]:
+                    - /url: /solutions/multilingual
+              - generic [ref=e1271]:
+                - generic [ref=e1272]: For Organizations
+                - generic [ref=e1273]:
+                  - link "For Teachers" [ref=e1274] [cursor=pointer]:
+                    - /url: /use-cases/teachers
+                  - link "For Publishing & Media" [ref=e1275] [cursor=pointer]:
+                    - /url: /use-cases/publishing
+                  - link "For Content Moderation" [ref=e1276] [cursor=pointer]:
+                    - /url: /use-cases/trust-and-safety
+                  - link "For Developers" [ref=e1277] [cursor=pointer]:
+                    - /url: /use-cases/developers
+                  - link "For Law Firms" [ref=e1278] [cursor=pointer]:
+                    - /url: /use-cases/law-firms
+                  - link "For Universities" [ref=e1279] [cursor=pointer]:
+                    - /url: /use-cases/universities
+                  - link "For Recruiters" [ref=e1280] [cursor=pointer]:
+                    - /url: /use-cases/recruiters
+                  - link "For ML Engineers" [ref=e1281] [cursor=pointer]:
+                    - /url: /use-cases/ml-engineers
+                  - link "For Compliance" [ref=e1282] [cursor=pointer]:
+                    - /url: /use-cases/compliance
+              - generic [ref=e1283]:
+                - generic [ref=e1284]: Research
+                - generic [ref=e1285]:
+                  - link "How AI Detection Works" [ref=e1286] [cursor=pointer]:
+                    - /url: /research/how-it-works
+                  - link "Pangram Research Papers" [ref=e1287] [cursor=pointer]:
+                    - /url: /research/papers
+                  - link "Research Inquiries" [ref=e1288] [cursor=pointer]:
+                    - /url: /contact-us/research
+                  - link "Models" [ref=e1289] [cursor=pointer]:
+                    - /url: /research/model-card
+              - generic [ref=e1290]:
+                - generic [ref=e1291]: Resources
+                - generic [ref=e1292]:
+                  - link "Knowledge Hub" [ref=e1293] [cursor=pointer]:
+                    - /url: /knowledge-hub
+                  - link "AI Education" [ref=e1294] [cursor=pointer]:
+                    - /url: /blog?category=education
+                  - link "Product Updates" [ref=e1295] [cursor=pointer]:
+                    - /url: /blog?category=productUpdates
+                  - link "News" [ref=e1296] [cursor=pointer]:
+                    - /url: /blog?category=news
+                  - link "Case Studies" [ref=e1297] [cursor=pointer]:
+                    - /url: /blog?category=caseStudies
+                  - link "Blog" [ref=e1298] [cursor=pointer]:
+                    - /url: /blog
+                  - link "Pricing" [ref=e1299] [cursor=pointer]:
+                    - /url: /pricing
+                  - link "Terms of Service" [ref=e1300] [cursor=pointer]:
+                    - /url: /terms-of-service
+                  - link "Privacy Policy" [ref=e1301] [cursor=pointer]:
+                    - /url: /privacy-policy
+                  - link "Data Privacy FAQ" [ref=e1302] [cursor=pointer]:
+                    - /url: /data-privacy
+                  - link "Status" [ref=e1303] [cursor=pointer]:
+                    - /url: https://status.pangram.com
+              - generic [ref=e1304]:
+                - generic [ref=e1305]: Company
+                - generic [ref=e1306]:
+                  - link "About Us" [ref=e1307] [cursor=pointer]:
+                    - /url: /about-us
+                  - link "Contact Us" [ref=e1308] [cursor=pointer]:
+                    - /url: /contact-us
+                  - link "Careers" [ref=e1309] [cursor=pointer]:
+                    - /url: https://jobs.ashbyhq.com/pangramlabs
+                  - link "Partner With Us" [ref=e1310] [cursor=pointer]:
+                    - /url: /partners
+                  - link "Press" [ref=e1311] [cursor=pointer]:
+                    - /url: /press
+                  - link "Events" [ref=e1312] [cursor=pointer]:
+                    - /url: /events
+                  - link "Reviews" [ref=e1313] [cursor=pointer]:
+                    - /url: /testimonials-reviews
+          - generic [ref=e1314]:
+            - generic [ref=e1315]:
+              - img "soc2" [ref=e1316]
+              - generic [ref=e1317]:
+                - generic [ref=e1318]: SOC2 TYPE2
+                - generic [ref=e1319]: Verified by AssuranceLab
+            - generic [ref=e1320]: © 2026 Pangram. All rights reserved.
+            - generic [ref=e1321]:
+              - link "info@pangram.com" [ref=e1322] [cursor=pointer]:
+                - /url: mailto:info@pangram.com
+              - generic [ref=e1323]:
+                - link "Pangram Labs on Instagram" [ref=e1324] [cursor=pointer]:
+                  - /url: https://www.instagram.com/pangramlabs/
+                - link "Pangram Labs on X" [ref=e1327] [cursor=pointer]:
+                  - /url: https://x.com/pangram
+                - link "Pangram Labs on LinkedIn" [ref=e1330] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/company/pangramlabs/
+                - link "Pangram Labs on TikTok" [ref=e1333] [cursor=pointer]:
+                  - /url: https://tiktok.com/@pangramlabs/
+              - link "Join our Community" [ref=e1336] [cursor=pointer]:
+                - /url: https://discord.gg/f7jDAPzWH3
+  - region "Notifications (F8)":
+    - list
+  - alert [ref=e1339]
+  - iframe [aria-hidden] [ref=e1340]
