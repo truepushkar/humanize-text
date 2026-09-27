@@ -1,4 +1,4 @@
-# Rehumanizer
+# Humanize Text
 
 A fully client-side, zero-backend **AI-text humanizer**. Paste machine-generated
 text, and a four-step chain rewrites it until the tell-tale AI fingerprints are
