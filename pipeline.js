@@ -1,7 +1,7 @@
 /* HumanizeText — fully client-side port of the 4-step humanizing chain.
  *
  * Steps:
- *   1. Rewrite  input -> Chinese          (OpenAI-compatible API with your key, or the built-in free endpoint)
+ *   1. Rewrite  input -> Chinese          (OpenAI-compatible API with your key)
  *   2. Rewrite  Chinese -> Japanese       (same)
  *   3. Google hop   Japanese -> intermediate  (clients5.google.com, no key)
  *   4. Final hop    intermediate -> target    (LibreTranslate -> Google, no key)
@@ -10,8 +10,6 @@
  * (MAX_REWRITE_TRIES extra attempts with an explicit length instruction),
  * then hard-truncated. No infinite loops.
  */
-
-import { freeRewrite } from "./freeApi.js";
 
 export const MAX_STEP_CHARS = 15000;
 export const MAX_REWRITE_TRIES = 2;
@@ -197,23 +195,14 @@ export async function runPipeline(text, cfg, { intermediate = "fi", target = "en
   const steps = [];
   const t0 = performance.now();
 
-  /* FREE mode: no API key — both LLM hops go through the free Cloudflare
-   * Workers AI demo chat endpoint instead of a keyed OpenAI-compatible API.
-   * Steps 3 and 4 are unchanged (both keyless already). */
-  const useFree = cfg?.mode === "free";
-
   onStep(1, "live");
-  const step1 = useFree
-    ? await freeRewrite(text, "中文", { temperature: cfg?.temperature ?? 1.3 })
-    : await llmRewriteClamped(text, "中文", cfg, { history: null });
-  steps.push({ step: 1, engine: useFree ? "Free API" : "LLM", direction: `Input → Chinese (rewrite)`, output: step1, length: step1.length });
+  const step1 = await llmRewriteClamped(text, "中文", cfg, { history: null });
+  steps.push({ step: 1, engine: "LLM", direction: `Input → Chinese (rewrite)`, output: step1, length: step1.length });
   onStep(1, "done", steps[0]);
 
   onStep(2, "live");
-  const step2 = useFree
-    ? await freeRewrite(step1, "日语", { history: { input: text, output: step1 }, temperature: cfg?.temperature ?? 1.3 })
-    : await llmRewriteClamped(step1, "日语", cfg, { history: { input: text, output: step1 } });
-  steps.push({ step: 2, engine: useFree ? "Free API" : "LLM", direction: `Chinese → Japanese (rewrite)`, output: step2, length: step2.length });
+  const step2 = await llmRewriteClamped(step1, "日语", cfg, { history: { input: text, output: step1 } });
+  steps.push({ step: 2, engine: "LLM", direction: `Chinese → Japanese (rewrite)`, output: step2, length: step2.length });
   onStep(2, "done", steps[1]);
 
   onStep(3, "live");

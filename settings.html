@@ -188,17 +188,6 @@ body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:v
 
   <form class="settings" id="setForm">
     <fieldset>
-      <legend>Engine</legend>
-      <div class="field">
-        <label>Default rewrite engine</label>
-        <select id="engineMode">
-          <option value="free">Free API — no key needed (lower quality)</option>
-          <option value="keyed">My own API key — better quality</option>
-        </select>
-        <div class="hint">The free API is a shared demo endpoint: works instantly, but quality is lower and it can be busy or rate-limited. For good quality rewrites, choose your own API key and add it below.</div>
-      </div>
-    </fieldset>
-    <fieldset>
       <legend>LLM engine</legend>
       <div class="field">
         <label for="provider">Provider preset</label>
@@ -345,7 +334,6 @@ function maskKey(k){ return k ? (k.length > 8 ? k.slice(0,4) + "\u2026" + k.slic
 /* ---------- load current settings ---------- */
 function loadSettings(){
   const s = loadStored();
-  $("#engineMode").value = s.engine_mode || "free";
   $("#provider").value = s.provider || "custom";
   $("#baseUrl").value = s.base_url || "";
   $("#model").value = s.model_chosen ? (s.model || "") : "";
@@ -538,7 +526,6 @@ $("#testBtn").addEventListener("click", async () => {
 /* ---------- save ---------- */
 async function save(notify=true){
   const patch = {
-    engine_mode: $("#engineMode").value,
     provider: $("#provider").value,
     base_url: $("#baseUrl").value.trim().replace(/\/+$/,""),
     temperature: parseFloat($("#temp").value),

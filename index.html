@@ -195,7 +195,6 @@ label.inline select{padding:7px 10px;font-size:13.5px}
   font-size:14px;
 }
 .callout.show{display:block}
-.callout.free{background:var(--amber-tint);border-color:#dcc590;color:var(--amber)}
 
 /* step trace accordion */
 .trace{margin:26px 0 8px}
@@ -369,7 +368,7 @@ body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:v
   <section class="hero">
     <div>
       <h1>Feed it the machine's prose,<br>take back <em>the people kind</em>.</h1>
-      <p>Four passes, two hands: an LLM rewrites twice through Chinese and Japanese, then two translation engines carry it via Finnish before rebuilding it in English. Every AI fingerprint that survives one pass gets scrambled by the next. <b>Works out of the box with the built-in free API — for good quality, use your own API key (Settings).</b></p>
+      <p>Four passes, two hands: an LLM rewrites twice through Chinese and Japanese, then two translation engines carry it via Finnish before rebuilding it in English. Every AI fingerprint that survives one pass gets scrambled by the next. <b>Bring your own API key (Settings) — DeepSeek, OpenRouter, OpenAI, Groq and more.</b></p>
     </div>
     <div class="chainbox">
       <h2>The chain</h2>
@@ -391,9 +390,6 @@ body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:v
       <textarea id="input" maxlength="15000" placeholder="Paste the AI-generated draft here…" aria-label="Input text"></textarea>
       <div class="controls">
         <button class="go" id="goBtn">Humanize</button>
-        <label class="inline" title="Free API works without a key; your own key gives better rewrite quality.">
-          <input type="checkbox" id="useFreeApi" checked> free API
-        </label>
         <label class="inline">via
           <select id="interLang" aria-label="Intermediate language">
             <option value="fi">Finnish</option>
@@ -418,7 +414,6 @@ body[data-theme="dark"] nav a[aria-current="page"]{background:var(--ink);color:v
         <button class="ghost" id="clearBtn">Clear</button>
       </div>
       <div class="callout" id="errBox" role="alert"></div>
-      <div class="callout free" id="freeCallout"></div>
     </div>
     <div class="pane" id="outPane">
       <div class="pane-head">
@@ -517,40 +512,6 @@ function patchSettings(patch) {
   return s;
 }
 
-/* FREE mode messaging */
-function syncFreeCheck() {
-  const useFree = $("#useFreeApi").checked;
-  localStorage.setItem("humanizetext.settings.v1", JSON.stringify({ ...loadSettings(), engine_mode: useFree ? "free" : "keyed" }));
-  const bc = $("#freeCallout");
-  if (useFree) {
-    bc.innerHTML = 'The free API is a shared demo endpoint — quality is lower and it can be busy. ' +
-      'For good quality rewrites, <a href="./settings.html"><b>use your own API key</b></a> (Settings).';
-    bc.classList.add("show");
-  } else {
-    const s = loadSettings();
-    if (!s.api_key || !s.base_url || !s.model) {
-      bc.innerHTML = 'Own-API mode selected but not configured — press Humanize to be prompted through setup, or re-check "free API".';
-      bc.classList.add("show");
-    } else {
-      bc.classList.remove("show");
-    }
-  }
-  refreshHeader();
-}
-
-$("#useFreeApi").addEventListener("change", syncFreeCheck);
-
-/* If the free endpoint turns out to be unreachable from the browser
- * (no CORS headers), uncheck it, explain, and steer to own-key mode. */
-function markFreeUnavailable(reason) {
-  $("#useFreeApi").checked = false;
-  syncFreeCheck();
-  const bc = $("#freeCallout");
-  bc.innerHTML = '⚠ ' + reason + ' The free API is currently not usable in-browser — ' +
-    '<a href="./settings.html"><b>use your own API key</b></a> (Settings) for full quality. ' +
-    'You can re-enable the free API to retry.';
-  bc.classList.add("show");
-}
 function toast(msg, err = false) {
   const t = $("#toast");
   t.textContent = msg;
@@ -562,10 +523,10 @@ function toast(msg, err = false) {
 /* ---------- header status ---------- */
 function refreshHeader() {
   const s = loadSettings();
-  const ok = s.engine_mode === "free" || (s.api_key && s.model && s.base_url);
+  const ok = s.api_key && s.model && s.base_url;
   $("#hdrDot").className = "dot" + (ok ? " ok" : "");
   $("#hdrTxt").textContent = ok
-    ? (s.engine_mode === "free" ? "free API (no key)" : `${s.model} @ ${s.base_url.replace(/^https?:\/\//, "")}`)
+    ? `${s.model} @ ${s.base_url.replace(/^https?:\/\//, "")}`
     : "not configured";
 }
 
@@ -592,9 +553,8 @@ async function startRun(){
   if(text.length > 15000){ toast("Text is too long (15,000 char limit).", true); return; }
 
   const s = loadSettings();
-  const useFree = s.engine_mode === "free";
-  if (!useFree && (!s.api_key || !s.base_url || !s.model)) {
-    toast("No API key saved. Open Settings to add one, or switch to the free API.", true);
+  if (!s.api_key || !s.base_url || !s.model) {
+    toast("No API key saved. Open Settings to add one.", true);
     return;
   }
 
@@ -611,33 +571,15 @@ async function startRun(){
   currentRun = { id: Date.now().toString(36), input: text, result: null };
 
   try {
-    let res;
-    try {
-      res = await runPipeline(
-        text,
-        useFree ? { mode: "free", temperature: Number(s.temperature) || 1.3 } : { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
-        { intermediate: $("#interLang").value, target: $("#tgtLang").value },
-        (n, state) => {
-          setStep(n, state === "live" ? "live" : "done");
-          if(state === "live") $("#outCount").textContent = `step ${n} of 4…`;
-        },
-      );
-    } catch (e) {
-      /* Free API unreachable in-browser (cross-origin) → fall back to the keyed
-       * path automatically when the user has a key saved. */
-      if (useFree && e.code === "FREE_API_UNAVAILABLE" && s.api_key && s.base_url && s.model) {
-        markFreeUnavailable(e.message);
-        toast("Free API blocked — switched to your own API key for this run.", true);
-        res = await runPipeline(
-          text,
-          { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
-          { intermediate: $("#interLang").value, target: $("#tgtLang").value },
-          (n, state) => { setStep(n, state === "live" ? "live" : "done"); },
-        );
-      } else {
-        throw e;
-      }
-    }
+    const res = await runPipeline(
+      text,
+      { base_url: s.base_url, api_key: s.api_key, model: s.model, temperature: Number(s.temperature) || 1.3 },
+      { intermediate: $("#interLang").value, target: $("#tgtLang").value },
+      (n, state) => {
+        setStep(n, state === "live" ? "live" : "done");
+        if(state === "live") $("#outCount").textContent = `step ${n} of 4…`;
+      },
+    );
     [1,2,3,4].forEach(n=>setStep(n,"done"));
     currentRun.result = res.result;
     finishRun(res);
@@ -646,11 +588,8 @@ async function startRun(){
     $("#goBtn").disabled = false;
     $("#goBtn").textContent = "Humanize";
     $("#outCount").textContent = "failed";
-    const errBox2 = $("#errBox");
-    let msg = e.message || String(e) || "The run failed.";
-    if (useFree) msg += " The free API is shared and sometimes busy — retry, or add your own API key in Settings (better quality).";
-    errBox2.textContent = msg;
-    errBox2.classList.add("show");
+    errBox.textContent = e.message || String(e) || "The run failed.";
+    errBox.classList.add("show");
     toast("Run failed — see details on the bench.", true);
   }
 }
@@ -820,7 +759,6 @@ window.delHistory = async function(id){
 };
 
 refreshHeader(); refreshStats(); refreshHistory();
-syncFreeCheck();
 </script>
 </body>
 </html>
