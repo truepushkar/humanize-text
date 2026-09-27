@@ -80,4 +80,4 @@ Released under the [MIT License](LICENSE).
 
 ---
 Made by [Pushkar Singh](https://github.com/truepushkar) ·
-ai_humanizer · 2026
+humanize-text · 2026
