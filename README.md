@@ -2,8 +2,9 @@
 
 A fully client-side, zero-backend **AI-text humanizer**. Paste machine-generated
 text, and a four-step chain rewrites it until the tell-tale AI fingerprints are
-scrambled — right in your browser. No server, no backend, no install: it's three
-static files you can host anywhere.
+scrambled — right in your browser. No server, no backend, no install: it's four
+static files you can host anywhere. **Works out of the box** with a built-in
+free API (no key needed) and is fully mobile-friendly.
 
 **Built by [Pushkar Singh (truepushkar)](https://github.com/truepushkar) ·
 Repository: <https://github.com/truepushkar/humanize-text>**
@@ -13,8 +14,8 @@ Repository: <https://github.com/truepushkar/humanize-text>**
 Four passes, two hands. Each pass scrambles whatever AI fingerprints survived
 the previous one:
 
-1. **LLM rewrite** — input → Chinese (any OpenAI-compatible endpoint, your key)
-2. **LLM rewrite** — Chinese → Japanese (same)
+1. **Rewrite** — input → Chinese (your own API key for best quality, or the built-in free API)
+2. **Rewrite** — Chinese → Japanese (same)
 3. **Google Translate hop** — Japanese → intermediate (keyless)
 4. **LibreTranslate hop** — intermediate → target, with a Google fallback (keyless)
 
@@ -33,18 +34,19 @@ python -m http.server 8080
 
 or host the folder as-is on GitHub Pages / Cloudflare Pages / Netlify (free).
 
-1. Open **Settings**, pick a provider preset (DeepSeek, OpenRouter, OpenAI,
-   Groq, …) or enter any OpenAI-compatible base URL.
-2. Paste your API key — it stays in your browser's `localStorage` and is sent
-   only to the endpoint you configure.
-3. Back on the Workbench, paste AI text, press **Humanize**, and watch the
-   four-step chain light up.
+1. Paste AI text and press **Humanize** — it runs on the built-in free API,
+   no key needed. (Flip the "free API" checkbox or use Settings → Engine to
+   switch.)
+2. For better rewrite quality, open **Settings → My own API key**: pick a
+   provider preset (DeepSeek, OpenRouter, OpenAI, Groq, …) or any
+   OpenAI-compatible base URL, paste your key — it stays in your browser's
+   `localStorage` and is sent only to the endpoint you configure.
 
 ## Where things live
 
 | Concern | Where |
 |---|---|
-| 4-step chain logic | `pipeline.js` |
+| `pipeline.js` + `freeApi.js` | 4-step chain logic, keyless default endpoint |
 | Workbench UI, history, diff, step trace | `index.html` |
 | Settings (provider presets, model browser, key) | `settings.html` |
 | Settings + run history | your browser's `localStorage` |
@@ -52,6 +54,9 @@ or host the folder as-is on GitHub Pages / Cloudflare Pages / Netlify (free).
 
 ## Features
 
+- **Works with no setup** — built-in free endpoint (Cloudflare Workers AI
+  demo) handles both LLM rewrite hops keylessly; add your own API key in
+  Settings for noticeably better rewrite quality.
 - **Workbench UI** — live chain visualization, per-step trace with expandable
   intermediate output, input→output diff view, copy / download / re-run.
 - **Provider presets + model browser** — fetches the `/models` list from your
@@ -63,6 +68,8 @@ or host the folder as-is on GitHub Pages / Cloudflare Pages / Netlify (free).
 - **Resilient chain** — transient-error retry with exponential backoff,
   LibreTranslate community-mirror fallback, sentence-chunked translation,
   dark/light/auto theme.
+- **Mobile-friendly** — responsive workbench and settings pages for phones and
+  small screens.
 - **Zero telemetry** — nothing leaves your browser except your configured LLM
   endpoint and the keyless public translation endpoints.
 
